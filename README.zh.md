@@ -10,8 +10,10 @@ iPyGIRS完全基于Python开发，界面部分使用PyQT，包含了文件IO、�
 
 #### 安装
 
+该软件目前只支持64位的Windows 7及其以上版本的系统，建议使用64位Windows 7或Windows 10系统。
+
 1.  从Python官网[Python官网](https://www.python.org/)下载嵌入式(绿色)版Python，即下载“Windows x86-64 embeddable zip file”链接下的文件;
-2.  将下载的“Windows x86-64 embeddable zip file”解压到iPyGIRS根目录下，如果，下载的3.7.5版本的embeddable Python，则应该在如下图所示的目录中有“python-3.7.5-embed-amd64”文件夹：
+2.  将下载的“Windows x86-64 embeddable zip file”解压到iPyGIRS根目录下，如果下载的3.7.5版本的embeddable Python，则应该在如下图所示的目录中有“python-3.7.5-embed-amd64”文件夹。
 
 ``` file directory tree
 
@@ -37,6 +39,6 @@ iPyGIRS完全基于Python开发，界面部分使用PyQT，包含了文件IO、�
 
 #### 使用说明
 
-该软件目前只支持Windows系统，双击iPyGIRS.bat,即可运行程序。
+双击iPyGIRS.bat,即可运行程序。
 
 1.  关于iPyGIRS的使用说明文档，会在将来的推出。

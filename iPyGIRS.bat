@@ -1,8 +1,8 @@
 @ECHO OFF
 
 SET batFileDir=%cd%
-SET pythonExeFilePath=iPyGIRS\python-3.7.5-embed-amd64\python.exe
-SET MainWindowFilePath=iPyGIRS\appUI\MainWindow.py
+SET pythonExeFilePath=./iPyGIRS/python-3.7.5-embed-amd64/python.exe
+SET MainWindowFilePath=./iPyGIRS/appUI/MainWindow.py
 SET pythonExeAbsFilePath=%batFileDir%%pythonExeFilePath%
 SET MainWindowAbsFilePath=%batFileDir%%MainWindowFilePath%
 SET "spaceChar= "

@@ -42,7 +42,7 @@ iPyGIRS完全基于Python开发，界面部分使用PyQT，包含了文件IO、�
 
     [简书文章：https://www.jianshu.com/p/d4d40cb403d6](https://www.jianshu.com/p/d4d40cb403d6)
 
-4. 使用刚安装的嵌入式（embeddable）Python的pip工具安装iPyGIRS所需的Python依赖包，依赖包的名称如表所示，安装脚本请使用“InstallPackages.bat”，具体使用方法，请参考上文中我的CSDN博客或简书。注意：GDAL与numpy+mkl均建议从第三方Python包网站——加州大学网站下载（Python官网的这两个包不一定符合iPyGIRS软件的要求）：[http://www.lfd.uci.edu/~gohlke/pythonlibs/](http://www.lfd.uci.edu/~gohlke/pythonlibs/),其中numpy，请务必下载numpy+mkl版本。
+4. 使用刚安装的嵌入式（embeddable）Python的pip工具安装iPyGIRS所需的Python依赖包（**安装过程请确保电脑能够正常上网，因为下表列出的部分Python包仍须自行下载其它依赖包安装**）。依赖包的名称如表所示，安装脚本请使用“InstallPackages.bat”，具体使用方法，请参考上文中我的CSDN博客或简书。注意：GDAL与numpy+mkl均建议从第三方Python包网站——加州大学网站下载（Python官网的这两个包不一定符合iPyGIRS软件的要求）：[http://www.lfd.uci.edu/~gohlke/pythonlibs/](http://www.lfd.uci.edu/~gohlke/pythonlibs/),其中numpy，请务必下载numpy+mkl版本。
 
 包名称|作用|版本
 :-|:-|:-:
@@ -76,7 +76,7 @@ PyQt5|QT5的Python封装，为iPyGIRS程序提供界面|5.13.0
 iPyGIRS的版本规划如下表所示，详细的版本规划，请参考“./docs/开发日志与版本更新计划.md”。
 
 版本|预计推出时间|主要更新内容
-:-|:-:|:-
+:-:|:-:|:-
 v0.2.1|2020.05~2020.06|主要修复v0.2.0版本中存在的系列bug，优化机器学习工具
 v0.3.0|2020.05~2020.06|增加csv文件支持、图像融合、波段分离、合并、深度学习、机器学习模型测试等功能
 v0.4.0|未定|机器学习可自动化多次训练、验证、测试。多进程技术加持，优化耗时的程序，增加程序后台处理功能。部分底层依赖修改。

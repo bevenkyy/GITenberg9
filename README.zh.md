@@ -42,6 +42,16 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 该软件目前只支持64位的Windows 7、Windows10系统，建议在以上两个系统环境下安装。（未来会推出Linux版本）
 
+- **使用系统中的Python作为解释器**
+
+如果您的操作系统中已经安装了Python和iPyGIRS所必须的包与模块，则可以通过更改“iPyGIRS.bat”文件来直接启动iPyGIRS程序。修改方式是，如下图使用vs code或者其他文版编辑器打开“iPyGIRS.bat”文件，注销第6行代码，并取消第7行的注释即可。（**注意：Windows中bat文件的注释符号为“REM”**）也就是把第7行的“REM”剪切粘贴到第6行的最左边第一个字符位置即可！
+
+![iPyGIRS_BatFile.png](./images/iPyGIRS_BatFile.png)
+
+- **使用嵌入式Python作为解释器**
+
+如您的系统中没有安装Python，或者您需要将“iPyGIRS”程序复制给别人用，则建议使用嵌入式Python作为解释器。在所下载的文件中，存在文件夹——“python-3.7.5-embed-amd64”，这就是Python官方提供的嵌入式Python，此时您需要使用“setup”目录（文件夹）下的“setup.exe”程序来安装第三方包，具体步骤如下文所示：
+
 ### **（1）下载iPyGIRS项目文件**
 
 将iPyGIRS项目文件下载到本地后解压，正确的文件目录结构应该如下所示：
@@ -72,7 +82,7 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ### **（2）下载第三方Python包**
 
-双击“Installer-V0.2.1-Beta.exe”安装程序，点击程序界面中提供的两个网址，下载安装程序中所列出的第三方Python包，**所有的包须下载到同一个文件夹下！！！** 下表仅列出了iPyGIRS部分依赖包,推荐学习Python的小伙伴重点学习这些包的使用。
+双击“./iPyGIRS/setup/setup.exe”安装程序，即可看到下图的程序界面，点击程序界面中提供的两个网址，下载安装程序中所列出的第三方Python包，**所有的包须下载到同一个文件夹下！！！** 下表仅列出了iPyGIRS部分依赖包,推荐学习Python的小伙伴重点学习这些包的使用。
 
 ![下载第三方Python包](./images/installer_program.png)
 
@@ -98,17 +108,17 @@ PyQt5|QT5的Python封装，为iPyGIRS程序提供界面
 
 ### **（3）安装第三方Python包**
 
-下载完所有第三方包后，使用“Installer-V0.2.1-Beta.exe”程序进行安装（**安装过程请确保电脑能够正常上网，因为虽然绝大多数第三方Python包已经下载到本地了，但部分第三方Python包仍须自行下载其它依赖包安装**）。该安装程序需要两个参数：
+下载完所有第三方包后，使用“./iPyGIRS/setup/setup.exe”程序进行安装（**安装过程请确保电脑能够正常上网，因为虽然绝大多数第三方Python包已经下载到本地了，但部分第三方Python包仍须自行下载其它依赖包安装**）。该安装程序需要两个参数：
 
 - 刚才所下载的第三方Python包的存放路径
 
-- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIRS-V0.2.0-Beta/python-3.7.5-embed-amd64/python.exe”）。
+- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIR/python-3.7.5-embed-amd64/python.exe”）。
 
 ![第三方Python包](./images/RunInstaller.gif)
 
 ## **5. 使用说明**
 
-执行完安装程序后，根目录下将生成“iPyGIRS-V0.2.1-Beta.bat”脚本文件，双击该文件即可运行程序。（由于是使用Windows cmd程序启动的iPyGIRS程序，因此，**除非你想退出程序，否则请勿关闭cmd黑色窗口**（可查看程序错误信息，未来的稳定版本，将会删除该窗口），这将导致程序被强制退出！）
+执行完安装程序后，根目录下将重新生成“iPyGIRS.bat”脚本文件，双击该文件即可运行程序。（由于是使用Windows cmd程序启动的iPyGIRS程序，因此，**除非你想退出程序，否则请勿关闭cmd黑色窗口**（可查看程序错误信息，未来的稳定版本，将会删除该窗口），这将导致程序被强制退出！）
 
 1. 关于iPyGIRS的使用说明文档，可下载目录"./docs/iPyGIRS_V0.1.2_使用说明书.docx"中的word文档到本地查看，新版本（即v0.2.0）的使用说明书会在将来的推出。
 

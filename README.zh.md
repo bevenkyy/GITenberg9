@@ -40,11 +40,11 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ## **4. 安装方法**
 
-该软件目前只支持64位的Windows 7、Windows10系统，建议在以上两个系统环境下安装。（未来会推出Linux版本）
+该软件目前只支持64位的Windows 7、Windows10系统，建议在以上两个系统环境下安装。（未来会推出Linux版本）这里推荐“使用系统中的Python作为解释器”和“使用嵌入式Python作为解释器”两种安装方式：
 
 - **使用系统中的Python作为解释器**
 
-如果您的操作系统中已经安装了Python和iPyGIRS所必须的包与模块，则可以通过更改“iPyGIRS.bat”文件来直接启动iPyGIRS程序。修改方式是，如下图使用vs code或者其他文版编辑器打开“iPyGIRS.bat”文件，注销第6行代码，并取消第7行的注释即可。（**注意：Windows中bat文件的注释符号为“REM”**）也就是把第7行的“REM”剪切粘贴到第6行的最左边第一个字符位置即可！
+如果您的操作系统中已经安装了Python和iPyGIRS所必须的包与模块（详见下文），则可以通过更改“iPyGIRS.bat”文件来直接启动iPyGIRS程序。修改方式是，如下图使用vs code或者其他文版编辑器打开“iPyGIRS.bat”文件，注销第6行代码，并取消第7行的注释即可。（**注意：Windows中bat文件的注释符号为“REM”**）也就是把第7行的“REM”剪切粘贴到第6行的最左边第一个字符位置即可！
 
 ![iPyGIRS_BatFile.png](./images/iPyGIRS_BatFile.png)
 
@@ -112,7 +112,7 @@ PyQt5|QT5的Python封装，为iPyGIRS程序提供界面
 
 - 刚才所下载的第三方Python包的存放路径
 
-- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIR/python-3.7.5-embed-amd64/python.exe”）。
+- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIRS/python-3.7.5-embed-amd64/python.exe”）。
 
 ![第三方Python包](./images/RunInstaller.gif)
 
@@ -120,9 +120,9 @@ PyQt5|QT5的Python封装，为iPyGIRS程序提供界面
 
 执行完安装程序后，根目录下将重新生成“iPyGIRS.bat”脚本文件，双击该文件即可运行程序。（由于是使用Windows cmd程序启动的iPyGIRS程序，因此，**除非你想退出程序，否则请勿关闭cmd黑色窗口**（可查看程序错误信息，未来的稳定版本，将会删除该窗口），这将导致程序被强制退出！）
 
-1. 关于iPyGIRS的使用说明文档，可下载目录"./docs/iPyGIRS_V0.1.2_使用说明书.docx"中的word文档到本地查看，新版本（即v0.2.0）的使用说明书会在将来的推出。
+1. 关于iPyGIRS的使用说明文档，可下载目录"./docs/iPyGIRS_V0.1.2_使用说明书.docx"中的word文档到本地查看，新版本的使用说明书会在将来的推出。
 
-2. 当前版本“V0.2.0”使用过程中，如遇到程序奔溃，闪退，卡死未响应等情况，会在cmd
+2. 当前版本使用过程中，如遇到程序奔溃，闪退，卡死未响应等情况，会在cmd
 窗口（黑色窗口）中显示错误信息，请将相应的截图和用到的数据的情况，一起截图或提交到Issues,或通过邮箱直接联系我（xingrui94@163.com）。
 
 ## **6. 版本规划**

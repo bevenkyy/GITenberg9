@@ -38,66 +38,68 @@ class InitResource(object):
         self._pixmap = {}
         self._gif = {}
         #
-        self.make_icon("appLogo", "./resource/icons/appLogo.ico")
+        resource_dir = "./core/resource/icons"
         #
-        self.make_icon("openFileToolBar", "./resource/icons/openFileToolBar.ico")
-        self.make_icon("saveFileToolBar", "./resource/icons/saveFileToolBar.ico")
-        self.make_icon("saveAllFileToolBar", "./resource/icons/saveAllFileToolBar.ico")
-        self.make_icon("closeFileToolBar", "./resource/icons/closeFileToolBar.ico")
-        self.make_icon("closeAllFileToolBar", "./resource/icons/closeAllFileToolBar.ico")
-        self.make_icon("dataViewToolBar", "./resource/icons/dataViewToolBar.ico")
-        self.make_icon("windowSettingToolBar", "./resource/icons/windowSettingToolBar.ico")
-        self.make_icon("appSettingToolBar", "./resource/icons/appSettingToolBar.ico")
-        self.make_icon("helpToolBar", "./resource/icons/helpToolBar.ico")
-        self.make_icon("feedbackToolBar", "./resource/icons/feedbackToolBar.ico")
-        self.make_icon("aboutToolBar", "./resource/icons/aboutToolBar.ico")
+        self.make_icon("appLogo", os.path.join(resource_dir, "appLogo.ico"))
         #
-        self.make_icon("tableFile_FileListTreeWidget", "./resource/icons/tableFile_FileListTreeWidget.ico")
-        self.make_icon("rasterFile_FileListTreeWidget", "./resource/icons/rasterFile_FileListTreeWidget.ico")
+        self.make_icon("openFileToolBar", os.path.join(resource_dir, "openFileToolBar.ico"))
+        self.make_icon("saveFileToolBar", os.path.join(resource_dir, "saveFileToolBar.ico"))
+        self.make_icon("saveAllFileToolBar", os.path.join(resource_dir, "saveAllFileToolBar.ico"))
+        self.make_icon("closeFileToolBar", os.path.join(resource_dir, "closeFileToolBar.ico"))
+        self.make_icon("closeAllFileToolBar", os.path.join(resource_dir, "closeAllFileToolBar.ico"))
+        self.make_icon("dataViewToolBar", os.path.join(resource_dir, "dataViewToolBar.ico"))
+        self.make_icon("windowSettingToolBar", os.path.join(resource_dir, "windowSettingToolBar.ico"))
+        self.make_icon("appSettingToolBar", os.path.join(resource_dir, "appSettingToolBar.ico"))
+        self.make_icon("helpToolBar", os.path.join(resource_dir, "helpToolBar.ico"))
+        self.make_icon("feedbackToolBar", os.path.join(resource_dir, "feedbackToolBar.ico"))
+        self.make_icon("aboutToolBar", os.path.join(resource_dir, "aboutToolBar.ico"))
         #
-        self.make_icon("toolBox_ToolBoxTreeWidget", "./resource/icons/toolBox_ToolBoxTreeWidget.ico")
-        self.make_icon("tool_ToolBoxTreeWidget", "./resource/icons/tool_ToolBoxTreeWidget.ico")
+        self.make_icon("tableFile_FileListTreeWidget", os.path.join(resource_dir, "tableFile_FileListTreeWidget.ico"))
+        self.make_icon("rasterFile_FileListTreeWidget", os.path.join(resource_dir, "rasterFile_FileListTreeWidget.ico"))
+        #
+        self.make_icon("toolBox_ToolBoxTreeWidget", os.path.join(resource_dir, "toolBox_ToolBoxTreeWidget.ico"))
+        self.make_icon("tool_ToolBoxTreeWidget", os.path.join(resource_dir, "tool_ToolBoxTreeWidget.ico"))
         #
         #
-        self.make_icon("open_file", "./resource/icons/open_file.ico")
-        self.make_icon("save_file", "./resource/icons/save_file.ico")
-        self.make_icon("select_folder", "./resource/icons/select_folder.ico")     
-        self.make_icon("del_file", "./resource/icons/del_file.ico")
-        self.make_icon("clear_file", "./resource/icons/clear_file.ico")
-        self.make_icon("load_table", "./resource/icons/load_table.ico")
-        self.make_icon("setting", "./resource/icons/setting.ico")
-        self.make_icon("checkError", "./resource/icons/checkError.ico")
+        self.make_icon("open_file", os.path.join(resource_dir, "open_file.ico"))
+        self.make_icon("save_file", os.path.join(resource_dir, "save_file.ico"))
+        self.make_icon("select_folder", os.path.join(resource_dir, "select_folder.ico")  )   
+        self.make_icon("del_file", os.path.join(resource_dir, "del_file.ico"))
+        self.make_icon("clear_file", os.path.join(resource_dir, "clear_file.ico"))
+        self.make_icon("load_table", os.path.join(resource_dir, "load_table.ico"))
+        self.make_icon("setting", os.path.join(resource_dir, "setting.ico"))
+        self.make_icon("checkError", os.path.join(resource_dir, "checkError.ico"))
 
-        self.make_icon("next_step", "./resource/icons/next_step.ico")     
-        self.make_icon("previous_step", "./resource/icons/previous_step.ico")
-        self.make_icon("operation_cancel", "./resource/icons/operation_cancel.ico")
-        self.make_icon("reset_parameter", "./resource/icons/reset_parameter.ico")
-        self.make_icon("finish_tip2", "./resource/icons/finish_tip2.ico")
-        self.make_icon("move_up", "./resource/icons/move_up.ico")
-        self.make_icon("move_down", "./resource/icons/move_down.ico")
+        self.make_icon("next_step", os.path.join(resource_dir, "next_step.ico"))     
+        self.make_icon("previous_step", os.path.join(resource_dir, "previous_step.ico"))
+        self.make_icon("operation_cancel", os.path.join(resource_dir, "operation_cancel.ico"))
+        self.make_icon("reset_parameter", os.path.join(resource_dir, "reset_parameter.ico"))
+        self.make_icon("finish_tip2", os.path.join(resource_dir, "finish_tip2.ico"))
+        self.make_icon("move_up", os.path.join(resource_dir, "move_up.ico"))
+        self.make_icon("move_down", os.path.join(resource_dir, "move_down.ico"))
 
-        self.make_icon("train_model2", "./resource/icons/train_model2.ico")
-        self.make_icon("test_model", "./resource/icons/test_model.ico")
+        self.make_icon("train_model2", os.path.join(resource_dir, "train_model2.ico"))
+        self.make_icon("test_model", os.path.join(resource_dir, "test_model.ico"))
 
-        self.make_icon("default", "./resource/icons/default.ico")
+        self.make_icon("default", os.path.join(resource_dir, "default.ico"))
 
         ###pixmap###
 
-        self.make_pixmap("import_data", "./resource/icons/import_data.ico")
-        self.make_pixmap("set_parameter","./resource/icons/set_parameter.ico")
-        self.make_pixmap("train_model1", "./resource/icons/train_model1.ico")
-        self.make_pixmap("optimize_model","./resource/icons/optimize_model.ico")
-        self.make_pixmap("export_data","./resource/icons/export_data.ico")
-        self.make_pixmap("step_tip", "./resource/icons/step_tip.ico")
-        self.make_pixmap("info_tip", "./resource/icons/info_tip.png")
-        self.make_pixmap("finish_tip1", "./resource/icons/finish_tip1.ico")
+        self.make_pixmap("import_data", os.path.join(resource_dir, "import_data.ico"))
+        self.make_pixmap("set_parameter",os.path.join(resource_dir, "set_parameter.ico"))
+        self.make_pixmap("train_model1", os.path.join(resource_dir, "train_model1.ico"))
+        self.make_pixmap("optimize_model",os.path.join(resource_dir, "optimize_model.ico"))
+        self.make_pixmap("export_data", os.path.join(resource_dir, "export_data.ico"))
+        self.make_pixmap("step_tip", os.path.join(resource_dir, "step_tip.ico"))
+        self.make_pixmap("info_tip", os.path.join(resource_dir, "info_tip.png"))
+        self.make_pixmap("finish_tip1", os.path.join(resource_dir, "finish_tip1.ico"))
 
-        self.make_pixmap("default", "./resource/icons/default.ico")
+        self.make_pixmap("default", os.path.join(resource_dir, "default.ico"))
 
         ###gif###
-        self.make_gif("fit_model", "./resource/icons/fit_model.gif")
+        self.make_gif("fit_model", os.path.join(resource_dir, "fit_model.gif"))
 
-        self.make_gif("default", "./resource/icons/default.ico")
+        self.make_gif("default", os.path.join(resource_dir, "default.ico"))
         
 
     def make_icon(self, name, path):

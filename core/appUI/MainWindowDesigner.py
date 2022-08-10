@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.0-Beta"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.1-Beta"))
         self.mainToolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
 
         ###

@@ -26,7 +26,7 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ![iPyGIRS软件架构](./images/SoftwareArchitecture.png)
 
-## **3. 最新版本及更新**
+## **3. 最新版本及其更新内容**
 
 **当前最新可用版本：V0.2.1**，通过本次更新，您将能能更好、更方便地安装iPyGIRS程序。本次更新，已将Embeddable-Python3.7.5及其pip工具一起打包发布。删除原使用“InstallPackages.bat”进行Python依赖包安装的方式，现改为使用已发布的二进制GUI安装程序，但这和以前一样，依然需要您提前下载好相关的包，这以**GUI安装程序中要求的包及版本号为准。** 只有二进制安装程序执行成功后，才能生成iPyGIRS主程序的启动脚本“iPyGIRS-V0.2.1-Beta.bat”。本版本的更新内容如下所示：
 
@@ -40,11 +40,11 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ## **4. 安装方法**
 
-该软件目前只支持64位的Windows 7、Windows10系统，建议在以上两个系统环境下安装。（未来会推出Linux版本）这里推荐“使用系统中的Python作为解释器”和“使用嵌入式Python作为解释器”两种安装方式：
+该软件目前只支持64位的Windows 7、Windows10系统，建议在以上两个系统环境下安装。（未来会推出Linux版本）这里推荐“使用系统中的Python作为解释器”和“使用嵌入式Python作为解释器”两种安装方式，无论哪中方式，您都需要先下载iPyGIRS项目文件。下载方法是，请点击项目主页上的“x个发行版”链接，然后点击下载最新的源码文件“Source code.zip”。
 
 - **使用系统中的Python作为解释器**
 
-如果您的操作系统中已经安装了Python和iPyGIRS所必须的包与模块（详见下文），则可以通过更改“iPyGIRS.bat”文件来直接启动iPyGIRS程序。修改方式是，如下图使用vs code或者其他文版编辑器打开“iPyGIRS.bat”文件，注销第6行代码，并取消第7行的注释即可。（**注意：Windows中bat文件的注释符号为“REM”**）也就是把第7行的“REM”剪切粘贴到第6行的最左边第一个字符位置即可！
+首先需要下载iPyGIRS项目文件下载到本地，并解压。如果您的操作系统中已经安装了Python和iPyGIRS所必须的包与模块（详见下文），则可以通过更改“iPyGIRS.bat”文件来直接启动iPyGIRS程序。修改方式是，如下图使用vs code或者其他文版编辑器打开“iPyGIRS.bat”文件，注销第6行代码，并取消第7行的注释即可。（**注意：Windows中bat文件的注释符号为“REM”**）也就是把第7行的“REM”剪切粘贴到第6行的最左边第一个字符位置即可！
 
 ![iPyGIRS_BatFile.png](./images/iPyGIRS_BatFile.png)
 

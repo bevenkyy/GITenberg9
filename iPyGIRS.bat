@@ -11,9 +11,7 @@ SET RunCommand=%pythonExeAbsFilePath%%spaceChar%%MainAppAbsFilePath%
 
 ECHO.
 
-ECHO %RunCommand%
-
-ECHO iPyGIRS(Version V0.2.1) application is starting, please wait a moment...
+ECHO iPyGIRS(Version 0.2.1) application is starting, please wait a moment...
 
 ECHO.
 

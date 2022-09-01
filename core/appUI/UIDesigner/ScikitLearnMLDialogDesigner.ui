@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>929</width>
-    <height>617</height>
+    <width>996</width>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -97,7 +97,7 @@
    <item>
     <widget class="QStackedWidget" name="scikitLearnSettingStackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="selectSamplePage">
       <layout class="QVBoxLayout" name="selectSampleVerticalLayout" stretch="0,1">
@@ -122,40 +122,32 @@
           <string>样本设置</string>
          </property>
          <layout class="QGridLayout" name="sampleSettingGroupBoxGridLayout">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
           <property name="verticalSpacing">
            <number>15</number>
           </property>
-          <item row="0" column="8">
-           <widget class="QRadioButton" name="isRowMajorRadioButton">
+          <item row="1" column="4">
+           <widget class="QCheckBox" name="isIncludeColTitleCheckBox">
             <property name="text">
-             <string>行优先</string>
+             <string>包含列标题</string>
             </property>
             <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <spacer name="sampleSettingGroupBoxHorizontalSpacer1">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="10">
-           <widget class="QRadioButton" name="isColMajorRadioButton">
-            <property name="text">
-             <string>列优先</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="7">
+          <item row="1" column="7">
            <spacer name="sampleSettingGroupBoxHorizontalSpacer2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -168,50 +160,30 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="12">
+          <item row="4" column="0">
+           <widget class="QLabel" name="selectTrainingValidationSampleLabel">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>训练-验证样本：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="12">
            <widget class="QPushButton" name="selectTrainingValidationSamplePushButton">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="11">
+          <item row="4" column="1" colspan="11">
            <widget class="QLineEdit" name="selectTrainingValidationSampleLineEdit"/>
           </item>
-          <item row="0" column="4">
-           <widget class="QCheckBox" name="isIncludeColTitleCheckBox">
-            <property name="text">
-             <string>包含列标题</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="9">
-           <spacer name="sampleSettingGroupBoxHorizontalSpacer3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="isIncludeRowTitleCheckBox">
-            <property name="text">
-             <string>包含行标题</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
+          <item row="1" column="0">
            <widget class="QLabel" name="sampleTypeLabel">
             <property name="maximumSize">
              <size>
@@ -224,31 +196,47 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="selectTrainingValidationSampleLabel">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>训练-验证样本：</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="12">
+          <item row="5" column="12">
            <widget class="QPushButton" name="selectTestSamplePushButton">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="1" column="2">
+           <spacer name="sampleSettingGroupBoxHorizontalSpacer1">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="9">
+           <spacer name="sampleSettingGroupBoxHorizontalSpacer3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="5" column="0">
            <widget class="QLabel" name="selectTestSampleLabel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>100</width>
+              <width>150</width>
               <height>16777215</height>
              </size>
             </property>
@@ -257,20 +245,10 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="11">
+          <item row="5" column="1" colspan="11">
            <widget class="QLineEdit" name="selectTestSampleLineEdit"/>
           </item>
-          <item row="0" column="6">
-           <widget class="QCheckBox" name="isIncludeLabelCheckBox">
-            <property name="text">
-             <string>包含标签</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
+          <item row="1" column="5">
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -282,6 +260,33 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="isIncludeRowTitleCheckBox">
+            <property name="text">
+             <string>包含行标题</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QRadioButton" name="isRowMajorRadioButton">
+            <property name="text">
+             <string>行优先</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8">
+           <widget class="QRadioButton" name="isColMajorRadioButton">
+            <property name="text">
+             <string>列优先</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -344,14 +349,49 @@
           <string/>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="6">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item row="0" column="7">
+           <widget class="QPushButton" name="resetParameterPushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="selectEstimatorLabel">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>学习器：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
            <widget class="QLabel" name="selectParameterTypeLabel">
             <property name="text">
              <string>参数类型：</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="7">
+          <item row="0" column="4">
            <widget class="QComboBox" name="selectParameterTypeComboBox">
             <property name="minimumSize">
              <size>
@@ -376,7 +416,30 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="4">
+          <item row="0" column="5">
+           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="6">
+           <widget class="QPushButton" name="importParameterFromFilePushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
            <widget class="QComboBox" name="selectEstimatorComboBox">
             <property name="minimumSize">
              <size>
@@ -429,88 +492,7 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="10">
-           <widget class="QPushButton" name="saveParameterToFilePushButton">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="selectTaskTypeComboBox">
-            <property name="minimumSize">
-             <size>
-              <width>85</width>
-              <height>0</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>回归</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>分类</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>聚类</string>
-             </property>
-            </item>
-           </widget>
-          </item>
           <item row="0" column="2">
-           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_1">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="selectEstimatorLabel">
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>学习器：</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="8">
-           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="9">
-           <widget class="QPushButton" name="importParameterFromFilePushButton">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
            <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -523,10 +505,27 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="selectTaskTypeLabel">
+          <item row="1" column="0">
+           <widget class="QLabel" name="estimatorParameterFileLabel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
-             <string>任务类型：</string>
+             <string>参数文件：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8">
+           <widget class="QPushButton" name="saveParameterToFilePushButton">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="8">
+           <widget class="QLineEdit" name="estimatorParameterFileLineEdit">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -645,6 +644,18 @@
           <string>预训练模型信息</string>
          </property>
          <layout class="QHBoxLayout" name="initModelTrainingInfoHorizontalLayout">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
           <item>
            <widget class="QTextBrowser" name="preTrainingEstimatorInfoTextBrowser">
             <property name="styleSheet">
@@ -661,15 +672,50 @@
        <item>
         <layout class="QVBoxLayout" name="trainEstimatorVerticalLayout">
          <item>
-          <widget class="QGroupBox" name="trainEstimatorGroupBox">
+          <widget class="QGroupBox" name="trainSettingGroupBox">
            <property name="title">
-            <string>训练模型</string>
+            <string>训练设置</string>
            </property>
            <layout class="QGridLayout" name="trainEstimatorGridLayout">
-            <item row="1" column="3">
-             <widget class="QPushButton" name="trainEstimatorPushButton">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="nJobsComboBox">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="nJobsLabel">
               <property name="text">
-               <string>训练</string>
+               <string>工作核心数：</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="kFoldCVLineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>5</string>
               </property>
              </widget>
             </item>
@@ -677,23 +723,6 @@
              <widget class="QLabel" name="kFoldCVLabel">
               <property name="text">
                <string>交叉验证（K）：</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="kFoldCVLineEdit">
-              <property name="text">
-               <string>5</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QComboBox" name="nJobsComboBox"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="nJobsLabel">
-              <property name="text">
-               <string>工作核心数：</string>
               </property>
              </widget>
             </item>
@@ -710,65 +739,45 @@
               </property>
              </spacer>
             </item>
+            <item row="1" column="3">
+             <widget class="QPushButton" name="trainEstimatorPushButton">
+              <property name="text">
+               <string>训练</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>
          <item>
           <widget class="QGroupBox" name="trainingCVTestResultGroupBox">
            <property name="title">
-            <string>结果</string>
+            <string>训练结果</string>
            </property>
            <layout class="QGridLayout" name="trainingCVTestResultGroupBoxGridLayout">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
             <item row="2" column="2">
-             <widget class="QLabel" name="trainingScore_1Label">
+             <widget class="QLabel" name="estimatorScore_1Label">
               <property name="text">
-               <string>-</string>
+               <string>OA</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="4" column="2">
-             <widget class="QLabel" name="testScore_1Label">
-              <property name="text">
-               <string>-</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="3">
-             <widget class="QLabel" name="cvScore_2Label">
-              <property name="text">
-               <string>-</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="3">
-             <widget class="QLabel" name="testScore_2Label">
-              <property name="text">
-               <string>-</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="sampleCountLabel">
-              <property name="text">
-               <string>样本数</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLabel" name="testSampleCountLabel">
-              <property name="text">
-               <string>-</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="cvResultLabel">
-              <property name="text">
-               <string>验证：</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="3">
+            <item row="10" column="3">
              <widget class="QPushButton" name="estimatorEvaluationChartPushButton">
               <property name="enabled">
                <bool>false</bool>
@@ -778,56 +787,44 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="3">
-             <widget class="QLabel" name="trainingScore_2Label">
-              <property name="text">
-               <string>-</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" colspan="4">
+            <item row="9" column="0" colspan="4">
              <widget class="Line" name="trainingCrossValidationTestResultGroupBoxLine">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
              </widget>
             </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="estimatorScore_1Label">
-              <property name="text">
-               <string>R2</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLabel" name="cvScore_1Label">
+            <item row="5" column="1">
+             <widget class="QLabel" name="cvSampleCountLabel">
               <property name="text">
                <string>-</string>
               </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="testResultLabel">
-              <property name="text">
-               <string>测试：</string>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="trainingResultLabel">
+            <item row="2" column="1">
+             <widget class="QLabel" name="sampleCountLabel">
               <property name="text">
-               <string>训练：</string>
+               <string>样本数</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="0" column="3">
-             <widget class="QLabel" name="estimatorScore_2Label">
+            <item row="4" column="3">
+             <widget class="QLabel" name="trainingScore_2Label">
               <property name="text">
-               <string>MSE</string>
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
-            <item row="6" column="2">
+            <item row="10" column="2">
              <widget class="QPushButton" name="estimatorLearningCurveChartPushButton">
               <property name="enabled">
                <bool>false</bool>
@@ -837,17 +834,140 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
+            <item row="4" column="1">
              <widget class="QLabel" name="trainingSampleCountLabel">
               <property name="text">
                <string>-</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="cvSampleCountLabel">
+            <item row="5" column="2">
+             <widget class="QLabel" name="cvScore_1Label">
               <property name="text">
                <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="cvResultLabel">
+              <property name="text">
+               <string>验证：</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="3">
+             <widget class="QLabel" name="testScore_2Label">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="trainingResultLabel">
+              <property name="maximumSize">
+               <size>
+                <width>70</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>训练：</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLabel" name="testSampleCountLabel">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="testResultLabel">
+              <property name="text">
+               <string>测试：</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2">
+             <widget class="QLabel" name="trainingScore_1Label">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QLabel" name="estimatorScore_2Label">
+              <property name="text">
+               <string>Kappa系数</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="3">
+             <widget class="QLabel" name="cvScore_2Label">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="2">
+             <widget class="QLabel" name="testScore_1Label">
+              <property name="text">
+               <string>-</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0" colspan="4">
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0" colspan="4">
+             <widget class="QTextBrowser" name="bestEstimatorInfoTextBrowser">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>125</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background:rgb(240,240,240)</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Null&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -878,7 +998,7 @@
        <item>
         <widget class="QGroupBox" name="saveEstimatorDataGroupBox">
          <property name="title">
-          <string/>
+          <string>保存设置</string>
          </property>
          <layout class="QVBoxLayout" name="saveModelDataGroupBoxVerticalLayout">
           <item>
@@ -1046,7 +1166,7 @@
    <item>
     <layout class="QHBoxLayout" name="bottomOperationWidgetHorizontalLayout">
      <property name="topMargin">
-      <number>15</number>
+      <number>5</number>
      </property>
      <item>
       <widget class="QLabel" name="stepLogoLabel">

@@ -22,7 +22,7 @@ from BandSpliterDialog import BandSpliterDialog
 from ImageMergeSTARFMDialog import ImageFusionSTARFMDialog
 from EmpiricalStatisticalModelDialog import EmpiricalStatisticalModelDialog
 from FormulaApplicationDialog import FormulaApplicationDialog
-from ScikitLearnMLDialog import ScikitLearnMLDialog
+from SelectMLTaskTypeDialog import SelectMLTaskTypeDialog
 from EstimatorApplicationDialog import EstimatorApplicationDialog
 from GeoserverWMSPublisherDialog import GeoserverWMSPublisherDialog
 from MySQLDatabaseManagementDialog import MySQLDatabaseManagementDialog
@@ -108,8 +108,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             formulaApplicationDialog = FormulaApplicationDialog(self.qSetting)
             formulaApplicationDialog.exec()
         elif selectToolName == "scikit-learn机器学习":
-            scikitLearnMLDialog = ScikitLearnMLDialog(self.qSetting)
-            scikitLearnMLDialog.exec()
+            selectMLTaskTypeDialog = SelectMLTaskTypeDialog(self.qSetting)
+            selectMLTaskTypeDialog.exec()
         elif selectToolName == "应用模型":
             estimatorApplicationDialog = EstimatorApplicationDialog(self.qSetting)
             estimatorApplicationDialog.exec()

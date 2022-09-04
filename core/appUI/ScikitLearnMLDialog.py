@@ -22,7 +22,7 @@ from ChartViewDialog import ChartViewDialog
 
 class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
 
-    def __init__(self, setting):
+    def __init__(self, setting, task_type):
         super(ScikitLearnMLDialog, self).__init__(None)
         self.setupUi(self)
         #
@@ -36,7 +36,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         self.test_samples = None
         self.test_samples_features = None
         #
-        self.task_type = None
+        self.task_type = task_type
         self.estimator_name = "LinearRegression"
         self.params_type = None
         self.params_info = None
@@ -194,14 +194,6 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
 
     def update_basic_params(self):
         #
-        task_type_text = self.selectTaskTypeComboBox.currentText()
-        if task_type_text == "分类":
-            self.task_type = "Classification"
-        elif task_type_text == "回归":
-            self.task_type = "Regression"
-        else:
-            self.task_type = "Cluster"
-        #
         estimator_name_text = self.selectEstimatorComboBox.currentText()
         if self.task_type == "Classification":
             if estimator_name_text == "逻辑回归":
@@ -265,8 +257,8 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
             self.basicParameterTableWidget.setItem(i, 1,item)
 
     def update_training_params(self):
-        self.training_params["cv"] = eval(self.kFoldCVLineEdit.text())
-        self.training_params["n_jobs"] = eval(self.nJobsComboBox.currentText())
+        self.training_params["cv"] = int(self.kFoldCVLineEdit.text())
+        self.training_params["n_jobs"] = int(self.nJobsComboBox.currentText())
 
     def update_training_info(self):
         #

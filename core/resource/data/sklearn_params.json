@@ -1,5 +1,29 @@
 {
     "description":"",
+    
+    "ClassificationEstimator":{
+        "逻辑回归": "LogisticRegression",
+        "支持向量分类": "SVC",
+        "多层感知器分类": "MLPClassifier",
+        "决策树分类": "DecisionTreeClassifier",
+        "随机森林分类": "RandomForestClassifier",
+        "梯度提升树分类": "GradientBoostingClassifier"
+    },
+
+    "ClusterEstimator":{
+        "K-Means聚类": "KMeans"
+    },
+
+    "RegressionEstimator":{
+        "线性回归":"LinearRegression",
+        "岭回归": "Ridge",
+        "套索回归": "Lasso",
+        "支持向量回归": "SVR",
+        "多层感知器回归": "MLPRegressor",
+        "决策树回归": "DecisionTreeRegressor",
+        "随机森林回归": "RandomForestRegressor",
+        "梯度提升树回归": "GradientBoostingRegressor"
+    },
 
     "LogisticRegression":{
         "name":"逻辑回归",
@@ -138,7 +162,7 @@
                 },
                 "max_iter":{
                     "name":"迭代次数",
-                    "value":[10, 50, 200],
+                    "value":[-1],
                     "type":["int"]
                 }
             }
@@ -146,7 +170,7 @@
     },
 
     "MLPClassifier":{
-        "name":"神经网络分类",
+        "name":"多层感知器分类",
         "parameters":{
             "default parameters":{
                 "description":"full",
@@ -220,7 +244,7 @@
                 },
                 "learning_rate_init":{
                     "name":"初始学习率",
-                    "value":0.001,
+                    "value":[0.001, 0.0001],
                     "type":["double"]
                 }
             }
@@ -316,7 +340,7 @@
                 },
                 "criterion":{
                     "name":"叶节点分裂规则",
-                    "value":"mse",
+                    "value":"gini",
                     "type":["string"]
                 },
                 "max_features":{
@@ -359,7 +383,7 @@
                 },
                 "criterion":{
                     "name":"叶节点分裂规则",
-                    "value":["mse", "mae"],
+                    "value":["gini", "entropy"],
                     "type":["string"]
                 },
                 "max_features":{
@@ -393,7 +417,7 @@
                 },
                 "loss":{
                     "name":"损失函数",
-                    "value":"ls",
+                    "value":"deviance",
                     "type":["string"]
                 },
                 "learning_rate":{
@@ -441,7 +465,7 @@
                 },
                 "loss":{
                     "name":"损失函数",
-                    "value":["ls", "lad"],
+                    "value":["deviance"],
                     "type":["string"]
                 },
                 "learning_rate":{
@@ -721,7 +745,7 @@
                 },
                 "max_iter":{
                     "name":"迭代次数",
-                    "value":[10, 50, 200],
+                    "value":[-1],
                     "type":["int"]
                 }
             }
@@ -729,7 +753,7 @@
     },
 
     "MLPRegressor":{
-        "name":"神经网络回归",
+        "name":"多层感知器回归",
         "parameters":{
             "default parameters":{
                 "description":"full",
@@ -798,7 +822,7 @@
                 },
                 "max_iter":{
                     "name":"最大迭代次数",
-                    "value":[50, 200, 500, 1000],
+                    "value":[-1],
                     "type":["double"]
                 },
                 "learning_rate_init":{

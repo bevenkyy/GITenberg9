@@ -19,10 +19,10 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from sklearn import (linear_model, tree, svm,
                      neural_network, ensemble, cluster)
+from sklearn.metrics import make_scorer
 from sklearn.model_selection import KFold, GridSearchCV, learning_curve
 
 from MathLib.stats_score import *
-
 
 class ScikitLearnML:
 
@@ -53,6 +53,11 @@ class ScikitLearnML:
         self._params_type = params_type
         self._basic_params =basic_params
         self._training_params = training_params
+        self._metrics1 = None
+        self._metrics2 = None
+        self._model_selection_scoring = None
+        self._model_selection__refit = None
+        self._learning_curve_scoring = None
         #
         self._init_estimator = None
         self._trained_estimator = None
@@ -60,6 +65,7 @@ class ScikitLearnML:
         #
         self._build_estimator()
         self._parse_params()
+        self._init_metrics()
 
     def _build_estimator(self):
         '''
@@ -70,7 +76,7 @@ class ScikitLearnML:
             elif self._estimator_name == "DecisionTreeClassifier":
                 self._init_estimator = tree.DecisionTreeClassifier(random_state = self.seed)
             elif self._estimator_name == "SVC":
-                self._init_estimator = svm.SVC(random_state = 0)
+                self._init_estimator = svm.SVC(probability = True, random_state = 0)
             elif self._estimator_name == "MLPClassifier":
                 self._init_estimator = neural_network.MLPClassifier(random_state = self.seed)
             elif self._estimator_name == "RandomForestClassifier":
@@ -118,60 +124,88 @@ class ScikitLearnML:
             raise Exception("Invalid basic params,“n_jobs” parameter cannot be None!")
         #
 
+    def _init_metrics(self):
+        if self._task_type == "Classification" or self._task_type == "Cluster":
+            self._metrics1 = oa_score
+            self._metrics2 = kappa_score
+            self._model_selection_scoring = ("accuracy", "neg_log_loss")
+            self._model_selection__refit = "accuracy"
+            self._learning_curve_scoring = "neg_log_loss"
+        else:
+            self._metrics1 = r2_score
+            self._metrics2 = rmse_score
+            self._model_selection_scoring = ("r2", "neg_mean_squared_error")
+            self._model_selection__refit = "r2"
+            self._learning_curve_scoring = "neg_mean_squared_error"
+
     def fit(self, training_X, training_y):
         '''
         '''
         trained_data = []
         cv_data = []
         #
-        if self._params_type == "default":
+        if self._params_type == "default" or self._params_type == "custom":
             self._trained_estimator = self._init_estimator
             self._trained_estimator.fit(training_X, training_y)
-            #
             training_y_pred = self._trained_estimator.predict(training_X)
             #
-            training_r2_score = r2_score(training_y, training_y_pred)
-            training_mse_score = mse_score(training_y, training_y_pred)
+            training_metrics1_score = self._metrics1(training_y, training_y_pred)
+            training_metrics2_score = self._metrics2(training_y, training_y_pred)
             #
-            trained_data.append(training_r2_score)
-            trained_data.append(training_mse_score)
+            trained_data.append(training_metrics1_score)
+            trained_data.append(training_metrics2_score)
             trained_data.append(np.hstack((training_y[:,np.newaxis], 
                                            training_y_pred[:,np.newaxis])))
-        elif self._params_type == "tuning" or self._params_type == "custom":
+        elif self._params_type == "tuning":
             gridSearchCV = GridSearchCV(self._init_estimator,
                                         self._basic_params,
                                         cv = self._cv,
-                                        scoring=("r2","neg_mean_squared_error",
-                                                "neg_mean_absolute_error"),
-                                        refit = "r2",
+                                        scoring = self._scoring,
+                                        refit = self._refit,
                                         n_jobs = self._n_jobs)
             gridSearchCV.fit(training_X, training_y)
-            #
             self._trained_estimator = gridSearchCV.best_estimator_
             #
-            for i, (training_index, cv_index) in enumerate(self._cv.split(training_X)):
-                #
+            training_metrics1_score_list = []
+            training_metrics2_score_list = []
+            cv_metrics1_score_list = []
+            cv_metrics2_score_list = []
+            #
+            for training_index, cv_index in self._cv.split(training_X):
                 training_X_ = training_X[training_index]
                 training_y_ = training_y[training_index]
                 training_y_pred = self._trained_estimator.predict(training_X_)
-                #
-                training_r2_score = r2_score(training_X_, training_y_pred)
-                training_mse_score = mse_score(training_y_, training_y_pred)
-                #
+                training_metrics1_score = self._metrics1(training_y_, training_y_pred)
+                training_metrics2_score = self._metrics2(training_y_, training_y_pred)    
+                training_metrics1_score_list.append(training_metrics1_score)
+                training_metrics2_score_list.append(training_metrics2_score)
                 #
                 cv_X = training_X[cv_index]
                 cv_y = training_y[cv_index]
                 cv_y_pred = self._trained_estimator.predict(cv_X)
-                # 
-                cv_r2_score = r2_score(cv_y, cv_y_pred)
-                cv_mse_score = mse_score(cv_y, cv_y_pred)
-                #
-                trained_data.append({"training_" + str(i):(training_r2_score, training_mse_score,
-                                                           np.hstack((training_y_[:,np.newaxis], 
-                                                                      training_y_pred[:,np.newaxis])))})
-                cv_data.append({"cv_" + str(i):(cv_r2_score, cv_mse_score,
-                                                np.hstack((cv_y[:,np.newaxis], 
-                                                           cv_y_pred[:,np.newaxis])))})
+                cv_metrics1_score = self._metrics1(cv_y, cv_y_pred)
+                cv_metrics2_score = self._metrics2(cv_y, cv_y_pred)
+                cv_metrics1_score_list.append(cv_metrics1_score)
+                cv_metrics2_score_list.append(cv_metrics2_score)
+            #
+            mean_training_metrics1_score = np.mean(np.array(training_metrics1_score_list, dtype = np.float64))
+            mean_training_metrics2_score = np.mean(np.array(training_metrics2_score_list, dtype = np.float64))
+            mean_cv_metrics1_score = np.mean(np.array(cv_metrics1_score_list, dtype = np.float64))
+            mean_cv_metrics2_score = np.mean(np.array(cv_metrics2_score_list, dtype = np.float64))
+            trained_data.append(mean_training_metrics1_score)
+            trained_data.append(mean_training_metrics2_score)
+            cv_data.append(mean_cv_metrics1_score)
+            cv_data.append(mean_cv_metrics2_score)
+            #
+            best_cv_metrics_index = cv_metrics1_score_list.index(max(cv_metrics1_score_list))
+            best_training_index, best_cv_index = self._cv.split(training_X)[best_cv_metrics_index]
+            best_training_y_pred = self._trained_estimator.predict(training_X[best_training_index])
+            best_cv_y_pred = self._trained_estimator.predict(training_X[best_cv_index])
+            #
+            trained_data.append(np.hstack((training_y[best_training_index][:,np.newaxis], 
+                                           best_training_y_pred[:,np.newaxis])))
+            cv_data.append(np.hstack((training_y[best_cv_index][:,np.newaxis], 
+                                      best_cv_y_pred[:,np.newaxis])))
         else:
             raise Exception("Invalid Parameter 'params_type'")
         #
@@ -185,152 +219,71 @@ class ScikitLearnML:
         cv_data = []
         test_data = []
         #
-        if self._params_type == "default":
+        if self._params_type == "default" or self._params_type == "custom":
             self._trained_estimator = self._init_estimator
             self._trained_estimator.fit(training_X, training_y)
-            #
             training_y_pred = self._trained_estimator.predict(training_X)
             #
-            #---------tmp---------
-            training_bias_score = bias_score(training_y, training_y_pred)
-            training_r_score, _ = r_score(training_y, training_y_pred)
-            training_r2_score = r2_score(training_y, training_y_pred)
-            training_mae_score =  mae_score(training_y, training_y_pred)
-            training_mape_score = mape_score(training_y, training_y_pred)
-            training_rmse_score = rmse_score(training_y, training_y_pred)
+            training_metrics1_score = self._metrics1(training_y, training_y_pred)
+            training_metrics2_score = self._metrics2(training_y, training_y_pred)
             #
-            print(training_bias_score)
-            print(training_r_score)
-            print(training_r2_score)
-            print(training_mae_score)
-            print(training_mape_score)
-            print(training_rmse_score)
-            #---------tmp---------
-            #
-            trained_data.append(training_r2_score)
-            trained_data.append(training_rmse_score)
+            trained_data.append(training_metrics1_score)
+            trained_data.append(training_metrics2_score)
             trained_data.append(np.hstack((training_y[:,np.newaxis], 
                                            training_y_pred[:,np.newaxis])))
-        elif self._params_type == "tuning" or self._params_type == "custom":
+        elif self._params_type == "tuning":
             gridSearchCV = GridSearchCV(self._init_estimator,
                                         self._basic_params,
                                         cv = self._cv,
-                                        scoring=("r2","neg_mean_squared_error",
-                                                "neg_mean_absolute_error"),
-                                        refit = "r2",
+                                        scoring = self._model_selection_scoring,
+                                        refit = self._model_selection__refit,
                                         n_jobs = self._n_jobs)
             gridSearchCV.fit(training_X, training_y)
-            #
             self._trained_estimator = gridSearchCV.best_estimator_
             #
-            training_bias_score_list = []
-            training_r_score_list = []
-            training_r2_score_list = []
-            training_mae_score_list = []
-            training_mape_score_list = []
-            training_rmse_score_list = []
+            training_metrics1_score_list = []
+            training_metrics2_score_list = []
+            cv_metrics1_score_list = []
+            cv_metrics2_score_list = []
             #
-            cv_bias_score_list = []
-            cv_r_score_list = []
-            cv_r2_score_list = []
-            cv_mae_score_list = []
-            cv_mape_score_list = []
-            cv_rmse_score_list = []
-            #---------tmp---------
-            #
-            best_cv_r2_score = -1
+            best_cv_metrics1_score = -9999
             best_training_index = None
             best_cv_index = None
-            #
             for training_index, cv_index in self._cv.split(training_X):
-                #
                 training_X_ = training_X[training_index]
                 training_y_ = training_y[training_index]
                 training_y_pred = self._trained_estimator.predict(training_X_)
-                #
-                ###
-                training_bias_score = bias_score(training_y_, training_y_pred)
-                training_r_score, _ = r_score(training_y_, training_y_pred)
-                training_r2_score = r2_score(training_y_, training_y_pred)
-                training_mae_score = mae_score(training_y_, training_y_pred)
-                training_mape_score = mape_score(training_y_, training_y_pred)
-                training_rmse_score = rmse_score(training_y_, training_y_pred)
-                #         
-                training_bias_score_list.append(training_bias_score)
-                training_r_score_list.append(training_r_score)
-                training_r2_score_list.append(training_r2_score)
-                training_mae_score_list.append(training_mae_score)
-                training_mape_score_list.append(training_mape_score)
-                training_rmse_score_list.append(training_rmse_score)
-                ###
-                #
+                training_metrics1_score = self._metrics1(training_y_, training_y_pred)
+                training_metrics2_score = self._metrics2(training_y_, training_y_pred)    
+                training_metrics1_score_list.append(training_metrics1_score)
+                training_metrics2_score_list.append(training_metrics2_score)
                 #
                 cv_X = training_X[cv_index]
                 cv_y = training_y[cv_index]
                 cv_y_pred = self._trained_estimator.predict(cv_X)
+                cv_metrics1_score = self._metrics1(cv_y, cv_y_pred)
+                cv_metrics2_score = self._metrics2(cv_y, cv_y_pred)
+                cv_metrics1_score_list.append(cv_metrics1_score)
+                cv_metrics2_score_list.append(cv_metrics2_score)
                 #
-                #
-                ###
-                cv_bias_score = bias_score(cv_y, cv_y_pred)
-                cv_r_score, _ = r_score(cv_y, cv_y_pred)
-                cv_r2_score = r2_score(cv_y, cv_y_pred)
-                cv_mae_score = mae_score(cv_y, cv_y_pred)
-                cv_mape_score = mape_score(cv_y, cv_y_pred)
-                cv_rmse_score = rmse_score(cv_y, cv_y_pred)
-                #
-                cv_bias_score_list.append(cv_bias_score)
-                cv_r_score_list.append(cv_r_score)
-                cv_r2_score_list.append(cv_r2_score)
-                cv_mae_score_list.append(cv_mae_score)
-                cv_mape_score_list.append(cv_mape_score)
-                cv_rmse_score_list.append(cv_rmse_score)
-                ###
-                #
-                #
-                if cv_r2_score > best_cv_r2_score:
+                if cv_metrics1_score > best_cv_metrics1_score:
                     best_training_index = training_index
                     best_cv_index = cv_index
             #
+            mean_training_metrics1_score = np.mean(np.array(training_metrics1_score_list, dtype = np.float64))
+            mean_training_metrics2_score = np.mean(np.array(training_metrics2_score_list, dtype = np.float64))
+            mean_cv_metrics1_score = np.mean(np.array(cv_metrics1_score_list, dtype = np.float64))
+            mean_cv_metrics2_score = np.mean(np.array(cv_metrics2_score_list, dtype = np.float64))
+            trained_data.append(mean_training_metrics1_score)
+            trained_data.append(mean_training_metrics2_score)
+            cv_data.append(mean_cv_metrics1_score)
+            cv_data.append(mean_cv_metrics2_score)
             #
-            ###
-            mean_training_bias_score = np.mean(np.array(training_bias_score_list, dtype = np.float64))
-            mean_training_r_score = np.mean(np.array(training_r_score, dtype = np.float64))
-            mean_training_r2_score = np.mean(np.array(training_r2_score_list, dtype = np.float64))
-            mean_training_mae_score = np.mean(np.array(training_mae_score, dtype = np.float64))
-            mean_training_mape_score = np.mean(np.array(training_mape_score, dtype = np.float64))
-            mean_training_rmse_score = np.mean(np.array(training_rmse_score_list, dtype = np.float64))
-            #
-            mean_cv_bias_score = np.mean(np.array(cv_bias_score_list, dtype = np.float64))
-            mean_cv_r_score = np.mean(np.array(cv_r_score_list, dtype = np.float64))
-            mean_cv_r2_score = np.mean(np.array(cv_r2_score_list, dtype = np.float64))
-            mean_cv_mae_score = np.mean(np.array(cv_mae_score_list, dtype = np.float64))
-            mean_cv_mape_score = np.mean(np.array(cv_mape_score_list, dtype = np.float64))
-            mean_cv_rmse_score = np.mean(np.array(cv_rmse_score_list, dtype = np.float64))
-            ###
-            #
-            print(mean_training_bias_score)
-            print(mean_training_r_score)
-            print(mean_training_r2_score)
-            print(mean_training_mae_score)
-            print(mean_training_mape_score)
-            print(mean_training_rmse_score)
-            #
-            print(mean_cv_bias_score)
-            print(mean_cv_r_score)
-            print(mean_cv_r2_score)
-            print(mean_cv_mae_score)
-            print(mean_cv_mape_score)
-            print(mean_cv_rmse_score)
-            #
-            trained_data.append(mean_training_r2_score)
-            trained_data.append(mean_training_rmse_score)
             best_training_y_pred = self._trained_estimator.predict(training_X[best_training_index])
+            best_cv_y_pred = self._trained_estimator.predict(training_X[best_cv_index])
+            #
             trained_data.append(np.hstack((training_y[best_training_index][:,np.newaxis], 
                                            best_training_y_pred[:,np.newaxis])))
-
-            cv_data.append(mean_cv_r2_score)
-            cv_data.append(mean_cv_rmse_score)
-            best_cv_y_pred = self._trained_estimator.predict(training_X[best_cv_index])
             cv_data.append(np.hstack((training_y[best_cv_index][:,np.newaxis], 
                                       best_cv_y_pred[:,np.newaxis])))
         else:
@@ -340,25 +293,13 @@ class ScikitLearnML:
             test_y_true = test_y
             test_y_pred = self._trained_estimator.predict(test_X)
             #
-            test_bias_score = bias_score(test_y_true, test_y_pred)
-            test_r_score, _ = r_score(test_y_true, test_y_pred)
-            test_r2_score = r2_score(test_y_true, test_y_pred)
-            test_mae_score = mae_score(test_y_true, test_y_pred)
-            test_mape_score = mape_score(test_y_true, test_y_pred)
-            test_rmse_score = rmse_score(test_y_true, test_y_pred)
+            test_metrics1_score = self._metrics1(test_y_true, test_y_pred)
+            test_metrics2_score = self._metrics2(test_y_true, test_y_pred)
+            test_data.append(test_metrics1_score)
+            test_data.append(test_metrics2_score)
             #
-            print(test_bias_score)
-            print(test_r_score)
-            print(test_r2_score)
-            print(test_mae_score)
-            print(test_mape_score)
-            print(test_rmse_score)
-            #
-            test_data.append(test_r2_score)
-            test_data.append(test_rmse_score)
             test_data.append(np.hstack((test_y_true[:,np.newaxis], 
                                         test_y_pred[:,np.newaxis])))
-        #
         #
         self._trained_estimator_data["trained_data"] = trained_data
         self._trained_estimator_data["cv_data"] = cv_data
@@ -403,7 +344,7 @@ class ScikitLearnML:
         '''
         '''
         training_sizes, training_scores, cv_scores = learning_curve(self._trained_estimator, X, y,
-                                                                    scoring = "neg_mean_squared_error",
+                                                                    scoring = self._learning_curve_scoring,
                                                                     cv = self._cv,
                                                                     n_jobs = self._n_jobs)
         return training_sizes, training_scores, cv_scores

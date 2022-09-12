@@ -51,8 +51,58 @@ def save_estimator(estimator_info, filepath):
     with open(filepath, 'w', encoding = "utf8") as fid:
         json.dump(estimator_info, fid)
 
-def read_sklearn_params_from_json(filepath, estimator_name,
-                                 params_type = "default"):
+def query_estimator_name(filepath, estimator = None, estimator_type = "Classification"):
+    '''
+    '''
+    estimator_name = None
+    #
+    with open(filepath, encoding = "utf8") as fid:
+        json_obj = json.load(fid)
+        #
+        if estimator_type == "Classification":
+            estimator_info_dict = json_obj.get("ClassificationEstimator")
+        elif estimator_type == "Cluster":
+            estimator_info_dict = json_obj.get("ClusterEstimator")
+        else:
+            estimator_info_dict = json_obj.get("RegressionEstimator")
+    #
+    if estimator is None:
+        estimator_name = tuple(estimator_info_dict.keys())
+    else:
+        for _estimator_name, _estimator in estimator_info_dict.items():
+            if _estimator == estimator:
+                estimator_name = _estimator_name
+                break
+
+    return estimator_name
+
+def query_estimator(filepath, estimator_name = None, estimator_type = "Classification"):
+    '''
+    '''
+    estimator = None
+    #
+    with open(filepath, encoding = "utf8") as fid:
+        json_obj = json.load(fid)
+        #
+        if estimator_type == "Classification":
+            estimator_info_dict = json_obj.get("ClassificationEstimator")
+        elif estimator_type == "Cluster":
+            estimator_info_dict = json_obj.get("ClusterEstimator")
+        else:
+            estimator_info_dict = json_obj.get("RegressionEstimator")
+    #
+    if estimator_name is None:
+        estimator = tuple(estimator_info_dict.values())
+    else:
+        for _estimator_name, _estimator in estimator_info_dict.items():
+            if _estimator_name == estimator_name:
+                estimator = _estimator
+                break
+
+    return estimator
+
+
+def read_sklearn_params_from_json(filepath, estimator, params_type = "default"):
     '''
     '''
     params = [{}, {}, {}]
@@ -60,7 +110,7 @@ def read_sklearn_params_from_json(filepath, estimator_name,
     with open(filepath, encoding = "utf8") as fid:
         json_obj = json.load(fid)
         #
-        estimator_obj = json_obj.get(estimator_name).get("parameters")
+        estimator_obj = json_obj.get(estimator).get("parameters")
         if params_type == "default":
             default_params_obj = estimator_obj.get("default parameters")
             if default_params_obj.get("description").strip() == "null":

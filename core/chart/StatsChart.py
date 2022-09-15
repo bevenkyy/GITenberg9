@@ -2,6 +2,7 @@
 
 import os
 import sys
+from collections import Counter
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +17,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
+from MathLib.stats_score import *
 
 class CoordinateAxis(FigureCanvas):
     '''
@@ -65,7 +67,7 @@ class HistgramChart(FigureCanvas):
     '''
  
     def __init__(self, data, bins = 50, 
-                 title = "histogram", xlabel = "x", ylabel = "count", xlim = (0, 2), ylim = (0, 2), 
+                 title = "histogram chart", xlabel = "x", ylabel = "count", xlim = (0, 2), ylim = (0, 2), 
                  dpi=100, figsize = (8, 8), facecolor=(0.98,0.98,0.98), edgecolor = (0.25,0.25,0.25)):
         '''
         '''
@@ -110,27 +112,21 @@ class HistgramChart(FigureCanvas):
 
 class BarChart(FigureCanvas):
 
-    def __init__(self, x, legend, axes_color = [0.9, 0.9, 0.9], title = "Bar Chart", x_width = 0.8,
-                 figure_size = (8, 8), figure_color = [0.85, 0.85, 0.85], dpi = 100, show_grid = True):
+    def __init__(self, data,
+                 title = "bar chart", xlabel = "class", ylabel = "count", dpi=100, figure_size = (8, 8), 
+                 facecolor=(0.98,0.98,0.98), edgecolor = (0.25,0.25,0.25)):
         '''
         '''
-        self.x = x
-        self.legend = legend
+        self.data = data
         #
         self.title = title
-        self.axes_color = axes_color
-        #
-        self.bar_width = x_width / len(legend)
-        #
-        group_count = np.arange(self.x.shape[1]) #数据分组数{}
-        self.start_x = group_count - (x_width - self.bar_width) / 2
+        self.xlabel = xlabel
+        self.ylabel = ylabel
         #
         self.figure_size = figure_size
-        self.figure_color = figure_color
+        self.facecolor = facecolor
+        self.edgecolor = edgecolor
         self.dpi = dpi
-        self.show_grid = show_grid
-        #
-        ##
         #
         figure = self.plot_bar()
         #
@@ -144,20 +140,66 @@ class BarChart(FigureCanvas):
     def plot_bar(self):
         '''
         '''
-        #
-        figure = plt.figure(figsize = self.figure_size, dpi = 100, facecolor = self.figure_color)
+        figure = plt.figure(figsize = self.figure_size, dpi = self.dpi, facecolor = self.facecolor)
         # 
-        axes = figure.add_subplot(111, facecolor = self.axes_color)
+        axes = figure.add_subplot(111)
+        axes.set_title(self.title, fontsize = 12)
+        axes.set_xlabel(self.xlabel)
+        axes.set_ylabel(self.ylabel)
         #
-        for i in range(self.x.shape[0]):
-            axes.bar(self.start_x + self.bar_width * i, self.x[i,:], self.bar_width, label = self.legend[i])
-        axes.legend()
-        #
-        axes.set_title(self.title)
+        x = []
+        y = []
+        for tmp_x, tmp_y in Counter(self.data).items():
+            x.append(tmp_x)
+            y.append(tmp_y)
+        axes.bar(x, y)
         #
         figure.set_tight_layout(True)
         #
         return figure
+
+class EstimatorCurveChart(FigureCanvas):
+
+    def __init__(self, training_size, training_scores, cv_scores):
+        '''
+        '''
+        self.training_size = training_size
+        self.training_scores = training_scores
+        self.cv_scores = cv_scores
+        #
+        self._figure = self._plot_curve()
+        #
+        FigureCanvas.__init__(self, self._figure)
+        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+        #
+        self.draw()
+
+    def _plot_curve(self):
+        '''
+        '''
+        figure = plt.figure(figsize = (5, 4), facecolor = "lightgray")
+        #
+        axes = figure.add_subplot(111)
+        axes.tick_params(axis = "both", direction = "in", top = True, right = True)
+        training_curve, = axes.plot(self.training_size, self.training_scores,
+                                    'o-', color = "#003366",
+                                    label = "Training score")
+        cv_curve, = axes.plot(self.training_size, self.cv_scores,
+                            'o-', color = "#FF9900",
+                            label = "Cross-Validation score")
+        #
+        axes.set_xlabel("Training Size")
+        axes.set_ylabel("MSE")
+        axes.legend(handles=[training_curve, cv_curve],
+                    loc='upper right')
+        axes.grid(True)
+        #
+        return figure
+
+    def get_figure(self):
+        #
+        return self._figure
 
 class EstimatorScatterChart(FigureCanvas):
     
@@ -234,8 +276,6 @@ class EstimatorScatterChart(FigureCanvas):
                      s = 75)
         axes.plot(self.y_true, self.y_fitting, color="red", linestyle = "-")
         #
-        axes.set_xlabel("Measured Values(x)")
-        axes.set_ylabel("Predicted Values(y)")
         axes.set_xlim(0, max(int(np.ceil(np.max(self.y_true))), int(np.ceil(np.max(self.y_pred)))))
         axes.set_ylim(0,max(int(np.ceil(np.max(self.y_true))), int(np.ceil(np.max(self.y_pred)))))
         #
@@ -251,16 +291,23 @@ class EstimatorScatterChart(FigureCanvas):
         #
         return self._figure
 
-class EstimatorCurveChart(FigureCanvas):
-
-    def __init__(self, training_size, training_scores, cv_scores):
+class EstimatorConfusionMatrix(FigureCanvas):
+    def __init__(self, y_true, y_pred, title = "Confusion Matrix", x_label = "True Class", y_label = "Pred Class", 
+                 axes_color = [0.9, 0.9, 0.9], 
+                 figure_size = (8, 8), figure_color = [0.85, 0.85, 0.85], dpi = 100):
         '''
         '''
-        self.training_size = training_size
-        self.training_scores = training_scores
-        self.cv_scores = cv_scores
+        self.confusion_matrix, _ = calc_confusion_matrix(y_true, y_pred)
+        self.x_label = x_label
+        self.y_label = y_label
+        self.title = title
+        self.axes_color = axes_color
         #
-        self._figure = self._plot_curve()
+        # self.figure_size = figure_size
+        # self.figure_color = figure_color
+        # self.dpi = dpi
+        #
+        self._figure = self._plot_ConfusionMatrix()
         #
         FigureCanvas.__init__(self, self._figure)
         FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -268,25 +315,25 @@ class EstimatorCurveChart(FigureCanvas):
         #
         self.draw()
 
-    def _plot_curve(self):
+    def _plot_ConfusionMatrix(self):
         '''
         '''
-        figure = plt.figure(figsize = (5, 4), facecolor = "lightgray")
-        #
+        figure = plt.figure(figsize = (8.5, 8), facecolor = "lightgray")
+        # 
         axes = figure.add_subplot(111)
-        axes.tick_params(axis = "both", direction = "in", top = True, right = True)
-        training_curve, = axes.plot(self.training_size, self.training_scores,
-                                    'o-', color = "#003366",
-                                    label = "Training score")
-        cv_curve, = axes.plot(self.training_size, self.cv_scores,
-                            'o-', color = "#FF9900",
-                            label = "Cross-Validation score")
         #
-        axes.set_xlabel("Training Size")
-        axes.set_ylabel("MSE")
-        axes.legend(handles=[training_curve, cv_curve],
-                    loc='upper right')
-        axes.grid(True)
+        axes.imshow(self.confusion_matrix)
+        #
+        axes.set_title(self.title)
+        axes.set_xlabel(self.x_label)
+        axes.set_ylabel(self.y_label)
+        # axes.set_xticklabels(row_labels, minor=False)
+        # axes.set_yticklabels(column_labels, minor=False)
+        # axes.set_xlim(0, max(int(np.ceil(np.max(self.y_true))), int(np.ceil(np.max(self.y_pred)))))
+        # axes.set_ylim(0,max(int(np.ceil(np.max(self.y_true))), int(np.ceil(np.max(self.y_pred)))))
+        # axes.tick_params(axis = "both", direction = "in", top = True, right = True)
+        #
+        figure.set_tight_layout(True)
         #
         return figure
 

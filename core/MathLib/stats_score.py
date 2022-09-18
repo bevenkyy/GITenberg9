@@ -2,6 +2,35 @@
 
 import numpy as np
 from scipy.stats import pearsonr
+from sklearn.metrics import confusion_matrix
+
+
+def calc_confusion_matrix(y_true, y_pred, binary_classfication = False):
+    cm = confusion_matrix(y_true, y_pred)
+    #
+    binary_classfication_score = None
+    if binary_classfication:
+        if np.unique(y_true).shape[0] > 2 or np.unique(y_pred).shape[0] > 2:
+            raise Exception("Valid data, it's not a binary classfication data")
+        else:
+            binary_classfication_score = tn, fp, fn, tp = cm.ravel()
+    #
+    return cm, binary_classfication_score
+
+def oa_score(y_true, y_pred):
+    cm, _ = calc_confusion_matrix(y_true, y_pred)
+    oa = cm.diagonal().sum()/cm.sum()
+    #
+    return oa
+
+def kappa_score(y_true, y_pred):
+    cm, _ = calc_confusion_matrix(y_true, y_pred)
+    N = cm.sum()
+    Po = cm.diagonal().sum()/N  # Overall Accuracy(OA)
+    Pe = (np.sum(cm, axis = 0) * np.sum(cm, axis = 1)).sum()/N**2
+    kappa = (Po - Pe) / (1 - Pe)
+    #
+    return kappa
 
 def bias_score(y_true, y_pred):
     '''
@@ -73,6 +102,7 @@ def rmse_score(y_true, y_pred):
     rmse = np.sqrt(mse_score(y_true, y_pred))
     #
     return rmse
+
 
 if __name__ == "__main__":
     #

@@ -14,7 +14,7 @@ from InitResource import get_icon
 from SampleMakerDialogDesigner import Ui_SampleMakerDialog
 from fileIO import ExcelIO
 from data import SampleMaker
-from chart.StatsChart import CoordinateAxis, HistgramChart
+from chart.StatsChart import CoordinateAxis, BarChart, HistgramChart
 
 
 class SampleMakerDialog(QDialog, Ui_SampleMakerDialog):
@@ -37,6 +37,12 @@ class SampleMakerDialog(QDialog, Ui_SampleMakerDialog):
         #
 
         self.qSetting = setting
+        #
+        if self.isRegressorSamplesRadioButton.isChecked():
+            self.sampleType = "classificationSample"
+        else:
+            self.sampleType = "regressionSample"
+        #
         self.selectAllSamplePushButton.clicked.connect(self.selectAllSamplePushButtonClicked)
         self.saveTrainingCVSamplePushButton.clicked.connect(self.saveTrainingCVSamplePushButtonClicked)
         self.saveTestSamplePushButton.clicked.connect(self.saveTestSamplePushButtonClicked)
@@ -85,14 +91,15 @@ class SampleMakerDialog(QDialog, Ui_SampleMakerDialog):
                     # self.training_cv_samples, self.test_samples = SampleMaker.sklearn_trainval_test_split(excel_data.astype(np.float64), test_size)
                     self.training_cv_samples, self.test_samples = SampleMaker.trainval_test_split(excel_data.astype(np.float64), test_size)
                     #
-                    self.training_cv_histChart = HistgramChart(self.training_cv_samples[:,-1], 
+                    self.training_cv_stats_Chart = HistgramChart(self.training_cv_samples[:,-1], 
                                                             title="Training Cross Validation Samples")
                     self.sampleDistributionChartGridLayout.removeWidget(self.training_cv_axis)
-                    self.sampleDistributionChartGridLayout.addWidget(self.training_cv_histChart, 0,0,1,1)
-                    self.test_histChart = HistgramChart(self.test_samples[:,-1], 
+                    self.sampleDistributionChartGridLayout.addWidget(self.training_cv_stats_Chart, 0,0,1,1)
+                    #
+                    self.test_stats_Chart = HistgramChart(self.test_samples[:,-1], 
                                                         title="Test Samples") 
                     self.sampleDistributionChartGridLayout.removeWidget(self.test_axis)
-                    self.sampleDistributionChartGridLayout.addWidget(self.test_histChart, 0,1,1,1)
+                    self.sampleDistributionChartGridLayout.addWidget(self.test_stats_Chart, 0,1,1,1)
                 except Exception as split_sample_err_info:
                     QMessageBox.critical(self, "错误", "创建样本时发生了错误！错误信息如下：\n" + str(split_sample_err_info), QMessageBox.Ok)
             except Exception as read_file_err_Info:

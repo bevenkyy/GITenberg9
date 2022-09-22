@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTa
 
 from ChartViewDialogDesigner import Ui_ChartViewDialog
 from InitResource import get_icon
-from chart.StatsChart import CoordinateAxis, HistgramChart, EstimatorCurveChart, EstimatorScatterChart
+from chart.StatsChart import *
 
 class ChartViewDialog(QDialog, Ui_ChartViewDialog):
 
@@ -55,9 +55,17 @@ class ChartViewDialog(QDialog, Ui_ChartViewDialog):
         elif self.chart_type == "estimator_scatter":
             for y_true, y_pred, title, x_label, y_label in self.data:
                 estimatorScatterChart = EstimatorScatterChart(y_true, y_pred, 
-                                                              title = title, x_label = x_label, y_label = y_label)
+                                                              title = title, 
+                                                              x_label = x_label, y_label = y_label)
                 self.chartViewHorizontalLayout.addWidget(estimatorScatterChart)
                 self.figures.append(estimatorScatterChart.get_figure())
+        elif self.chart_type == "estimator_confusionMatrix":
+            for y_true, y_pred, title, x_label, y_label in self.data:
+                estimatorConfusionMatrix = EstimatorConfusionMatrix(y_true, y_pred, 
+                                                                    title = title, 
+                                                                    x_label = x_label, y_label = y_label)
+                self.chartViewHorizontalLayout.addWidget(estimatorConfusionMatrix)
+                self.figures.append(estimatorConfusionMatrix.get_figure())
 
     def saveChartPushButtonClicked(self):
         #

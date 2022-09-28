@@ -58,9 +58,12 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         #========init dialog========
         self.init_global_UI_element()
         self.init_selectTaskPage_UI_element()
-        # self.init_estimator_save_params()
-        # self.update_basic_params()
-        # self.update_training_params()
+        #==============================================tmp==============================================
+        self.selectParameterTunerLabel.setEnabled(False)
+        self.selectParameterTunerComboBox.setEnabled(False)
+        self.resetParameterPushButton.setEnabled(False)
+        self.saveParameterToFilePushButton.setEnabled(False)
+        #==============================================tmp==============================================
         #
         self.connect_singal_solt()
 
@@ -105,7 +108,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         self.nextStepPushButton.setIcon(get_icon("next_step"))
         self.cancelFinishPushButton.setIcon(get_icon("operation_cancel"))
         # =========================================================init ui elments=========================================================
-        self.ui_element = {"selectTaskTypePage":{"operationLogoLabel":get_pixmap("import_data"),
+        self.ui_element = {"selectTaskTypePage":{"operationLogoLabel":get_pixmap("select_task"),
                                                 "operationTitleLabel":"选择任务",
                                                 "operationDescriptionLabel":"根据问题，选择对应的机器学习的模式类型，这里提供了分类模型、回归模型和聚类模型三大类机器学习常见的模型。",
                                                 "stepLogoLabel":get_pixmap("info_tip"),
@@ -719,7 +722,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
 
     def cancelFinishPushButtonClicked(self):
         #
-        if self.scikitLearnSettingStackedWidget.currentIndex() != 3:
+        if self.scikitLearnSettingStackedWidget.currentIndex() != 4:
             qdlg_result = QMessageBox.question(self, "询问", "模型尚未训练调试完成，是否仍关闭此窗口？", QMessageBox.Yes|QMessageBox.No)
             if qdlg_result == QMessageBox.No:
                 return

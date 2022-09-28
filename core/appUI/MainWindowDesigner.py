@@ -12,7 +12,7 @@ from InitResource import get_icon
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(350, 600)
+        MainWindow.resize(360, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.1-Beta"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.2-Beta"))
         self.mainToolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
 
         ###

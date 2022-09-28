@@ -88,6 +88,7 @@ class InitResource(object):
         self.make_pixmap("regressor_icon",os.path.join(resource_dir, "regressor_icon.png"))
         self.make_pixmap("clusterer_icon", os.path.join(resource_dir, "clusterer_icon.png"))
 
+        self.make_pixmap("select_task", os.path.join(resource_dir, "select_task.ico"))
         self.make_pixmap("import_data", os.path.join(resource_dir, "import_data.ico"))
         self.make_pixmap("set_parameter",os.path.join(resource_dir, "set_parameter.ico"))
         self.make_pixmap("train_model1", os.path.join(resource_dir, "train_model1.ico"))

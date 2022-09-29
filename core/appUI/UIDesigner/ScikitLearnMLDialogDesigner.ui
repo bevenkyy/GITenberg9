@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>997</width>
-    <height>604</height>
+    <width>1006</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -97,7 +97,7 @@
    <item>
     <widget class="QStackedWidget" name="scikitLearnSettingStackedWidget">
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="selectTaskTypePage">
       <layout class="QGridLayout" name="gridLayout_2">
@@ -509,28 +509,18 @@
           <property name="bottomMargin">
            <number>5</number>
           </property>
-          <item row="0" column="7">
-           <widget class="QPushButton" name="resetParameterPushButton">
-            <property name="enabled">
-             <bool>true</bool>
+          <item row="0" column="5">
+           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="selectEstimatorLabel">
-            <property name="maximumSize">
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>60</width>
-              <height>25</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
-            <property name="text">
-             <string>学习器：</string>
-            </property>
-           </widget>
+           </spacer>
           </item>
           <item row="0" column="3">
            <widget class="QLabel" name="selectParameterTypeLabel">
@@ -564,8 +554,35 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="5">
-           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_3">
+          <item row="0" column="6">
+           <widget class="QLabel" name="selectParameterTunerLabel">
+            <property name="text">
+             <string>参数调试器：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="11">
+           <widget class="QPushButton" name="saveParameterToFilePushButton">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="selectEstimatorLabel">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>学习器：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_1">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -577,10 +594,10 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="6">
-           <widget class="QPushButton" name="importParameterFromFilePushButton">
+          <item row="0" column="10">
+           <widget class="QPushButton" name="resetParameterPushButton">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="text">
              <string/>
@@ -600,18 +617,15 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="0" column="9">
+           <widget class="QPushButton" name="importParameterFromFilePushButton">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
+            <property name="text">
+             <string/>
             </property>
-           </spacer>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="estimatorParameterFileLabel">
@@ -623,19 +637,39 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="8">
-           <widget class="QPushButton" name="saveParameterToFilePushButton">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="8">
+          <item row="1" column="1" colspan="11">
            <widget class="QLineEdit" name="estimatorParameterFileLineEdit">
             <property name="enabled">
              <bool>false</bool>
             </property>
            </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QComboBox" name="selectParameterTunerComboBox">
+            <item>
+             <property name="text">
+              <string>格网搜索</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>随机搜索</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="8">
+           <spacer name="scikitLearnSettingGroupBoxHorizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>

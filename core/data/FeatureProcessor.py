@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import re
 import numpy as np
+import numexpr as ne
 from scipy.spatial.distance import pdist, squareform
 from util import convert_data_structure
 
@@ -199,10 +200,11 @@ def parse_two_feature_sum_difference_ratio(feature_str):
 def feature_calculator(sample, feature_str, feature_calculation_list):
     #
     new_sample_dict = {}
-    features_info_dict = parse_sample_feature(sample, feature_str)
+    features_info_dict = parse_sample_feature(sample.astype(np.float32), feature_str)
     #
     for feature_calculation in feature_calculation_list:
-        new_sample_dict[feature_calculation] = eval(feature_calculation, features_info_dict).tolist()
+        # new_sample_dict[feature_calculation] = eval(feature_calculation, features_info_dict)
+        new_sample_dict[feature_calculation] = ne.evaluate(feature_calculation, local_dict = features_info_dict)
     new_sample, col_title = convert_data_structure.dict_to_2darray(new_sample_dict, None)
     #
     return new_sample, col_title

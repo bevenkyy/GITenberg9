@@ -502,7 +502,6 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         fit_gif.start()
         self.stepTipLabel.setText("正在计算模型学习曲线数据,请稍后！")
         #
-        print(self.trained_estimator)
         self.calc_thread = RunCalcLearningCurveThread(self.trained_estimator, 
                                                     self.training_cv_samples,
                                                     self.training_params)

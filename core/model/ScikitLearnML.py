@@ -72,36 +72,36 @@ class ScikitLearnML:
         '''
         if self._task_type == "Classification":
             if self._estimator_name == "LogisticRegression":
-                self._init_estimator = linear_model.LogisticRegression(random_state = self.seed)
+                self._init_estimator = linear_model.LogisticRegression(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "DecisionTreeClassifier":
-                self._init_estimator = tree.DecisionTreeClassifier(random_state = self.seed)
+                self._init_estimator = tree.DecisionTreeClassifier(**self._basic_params,random_state = self.seed)
             elif self._estimator_name == "SVC":
-                self._init_estimator = svm.SVC(probability = True, random_state = 0)
+                self._init_estimator = svm.SVC(**self._basic_params, probability = True, random_state = 0)
             elif self._estimator_name == "MLPClassifier":
-                self._init_estimator = neural_network.MLPClassifier(random_state = self.seed)
+                self._init_estimator = neural_network.MLPClassifier(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "RandomForestClassifier":
-                self._init_estimator = ensemble.RandomForestClassifier(random_state = self.seed)
+                self._init_estimator = ensemble.RandomForestClassifier(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "GradientBoostingClassifier":
-                self._init_estimator = ensemble.GradientBoostingClassifier(random_state = self.seed)
+                self._init_estimator = ensemble.GradientBoostingClassifier(**self._basic_params, random_state = self.seed)
             else:
                 raise Exception("Invalid estimator")
         elif self._task_type == "Regression":
             if self._estimator_name == "LinearRegression":
                 self._init_estimator = linear_model.LinearRegression()
             elif self._estimator_name == "Ridge":
-                self._init_estimator = linear_model.Ridge(random_state = self.seed)
+                self._init_estimator = linear_model.Ridge(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "Lasso":
-                self._init_estimator = linear_model.Lasso(random_state = self.seed)
+                self._init_estimator = linear_model.Lasso(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "DecisionTreeRegressor":
-                self._init_estimator = tree.DecisionTreeRegressor(random_state = self.seed)
+                self._init_estimator = tree.DecisionTreeRegressor(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "SVR":
-                self._init_estimator = svm.SVR()
+                self._init_estimator = svm.SVR(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "MLPRegressor":
-                self._init_estimator = neural_network.MLPRegressor(random_state = self.seed)
+                self._init_estimator = neural_network.MLPRegressor(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "RandomForestRegressor":
-                self._init_estimator = ensemble.RandomForestRegressor(random_state = self.seed)
+                self._init_estimator = ensemble.RandomForestRegressor(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "GradientBoostingRegressor":
-                self._init_estimator = ensemble.GradientBoostingRegressor(random_state = self.seed)
+                self._init_estimator = ensemble.GradientBoostingRegressor(**self._basic_params, random_state = self.seed)
             else:
                 raise Exception("Invalid estimator")
         elif self._task_type == "Cluster":

@@ -41,7 +41,7 @@ class EstimatorApplicationDialog(QDialog, Ui_EstimatorApplicationDialog):
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectDataFilePushButton.setIcon(get_icon("open_file"))
         self.clearDataFilePushButton.setIcon(get_icon("clear_file"))

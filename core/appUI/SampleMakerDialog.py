@@ -33,7 +33,7 @@ class SampleMakerDialog(QDialog, Ui_SampleMakerDialog):
 
         self.init_sample_distribution_chart()
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
 
         self.qSetting = setting

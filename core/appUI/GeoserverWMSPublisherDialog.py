@@ -37,7 +37,7 @@ class GeoserverWMSPublisherDialog(QDialog, Ui_GeoserverWMSPublisherDialog):
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectDataFilePushButton.setIcon(get_icon("select_folder"))
         self.selectStyleFilePushButton.setIcon(get_icon("select_folder"))

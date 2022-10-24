@@ -34,7 +34,7 @@ class BandCalculatorDialog(QDialog, Ui_BandCalculatorDialog):
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectImageFilePushButton.setIcon(get_icon("open_file"))
         self.deleteImageFilePushButton.setIcon(get_icon("del_file"))

@@ -65,7 +65,7 @@ class MySQLDatabaseManagementDialog(QDialog, Ui_MySQLDatabaseManagementDialog):
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectFilePushButton.setIcon(get_icon("open_file"))
         self.delFilePushButton.setIcon(get_icon("del_file"))

@@ -35,16 +35,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         #
         self.init_app_config()
-        self.init_ui_element()
+        self.init_window_ui()
+        self.init_toolBar_ui()
+        self.init_toolBox_ui()
         self.connect_signal_slot()
     
-    def init_ui_element(self):
-        self.setWindowIcon(get_icon("appLogo"))
-
-    def connect_signal_slot( self ):
-        self.appSettingToolBarAction.triggered.connect(self.appSettingToolBarActionTriggered)
-        self.toolBoxTreeWidget.doubleClicked.connect(self.toolBoxTreeWidgetDoubleClicked)
-
     def init_app_config(self):
         #
         self.setting_filename = os.path.dirname(os.path.dirname(__file__)) + \
@@ -69,6 +64,78 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                                 r"\bin\curl-7.65.3-win64-mingw\bin"
             #
             self.qSetting.setValue("curlBinDir", self.curl_bin_dir)
+
+    def init_window_ui(self):
+        self.setWindowIcon(get_icon("appLogo"))
+        self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint|QtCore.Qt.WindowCloseButtonHint)
+
+    def init_toolBar_ui(self):
+        self.mainToolBar = QtWidgets.QToolBar(self)
+        self.mainToolBar.setMovable(False)
+        self.mainToolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.mainToolBar.setObjectName("mainToolBar")
+        self.addToolBar(QtCore.Qt.TopToolBarArea, self.mainToolBar)
+        # 
+        self.appSettingToolBarAction = QtWidgets.QAction(get_icon("toolBarAppSetting"), "设置", self)
+        self.mainToolBar.addAction(self.appSettingToolBarAction)
+        self.mainToolBar.addSeparator()
+
+        self.helpToolBarAction = QtWidgets.QAction(get_icon("toolBarHelp"), "帮助", self)
+        self.mainToolBar.addAction(self.helpToolBarAction)
+
+        self.feedbackToolBarAction = QtWidgets.QAction(get_icon("toolBarFeedback"), "反馈", self)
+        self.mainToolBar.addAction(self.feedbackToolBarAction)
+
+        self.aboutToolBarAction = QtWidgets.QAction(get_icon("toolBarAbout"), "关于", self)
+        self.mainToolBar.addAction(self.aboutToolBarAction)
+
+    def init_toolBox_ui(self):
+        # 数据管理
+        self.toolBoxTreeWidget.topLevelItem(0).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(1).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(1).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(2).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(2).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(0).child(2).child(1).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 数理统计
+        self.toolBoxTreeWidget.topLevelItem(1).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(1).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(1).child(1).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 地理处理
+        self.toolBoxTreeWidget.topLevelItem(2).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(2).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 栅格数据
+        self.toolBoxTreeWidget.topLevelItem(3).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(1).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(2).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(3).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(3).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(4).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(3).child(4).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 机器学习
+        self.toolBoxTreeWidget.topLevelItem(4).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(4).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(4).child(1).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(4).child(2).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 数据库
+        self.toolBoxTreeWidget.topLevelItem(5).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(5).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+        # 地图服务
+        self.toolBoxTreeWidget.topLevelItem(6).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(6).child(0).setIcon(0, get_icon("toolBoxBoxTreeWidget"))
+        self.toolBoxTreeWidget.topLevelItem(6).child(0).child(0).setIcon(0, get_icon("toolBoxToolTreeWidget"))
+        
+    def connect_signal_slot( self ):
+        self.appSettingToolBarAction.triggered.connect(self.appSettingToolBarActionTriggered)
+        self.toolBoxTreeWidget.doubleClicked.connect(self.toolBoxTreeWidgetDoubleClicked)
     
     def appSettingToolBarActionTriggered(self):
         appSettingDialog = AppSettingDialog(self.qSetting)

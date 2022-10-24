@@ -32,7 +32,7 @@ class AppSettingDialog(QDialog, Ui_AppSettingDialog):
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("setting"))
         #
         self.selectWorkingDirPushButton.setIcon(get_icon("select_folder"))
         #

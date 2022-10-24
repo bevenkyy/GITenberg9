@@ -49,16 +49,18 @@ class InitResource(object):
         self.make_icon("closeAllFileToolBar", os.path.join(resource_dir, "closeAllFileToolBar.ico"))
         self.make_icon("dataViewToolBar", os.path.join(resource_dir, "dataViewToolBar.ico"))
         self.make_icon("windowSettingToolBar", os.path.join(resource_dir, "windowSettingToolBar.ico"))
-        self.make_icon("appSettingToolBar", os.path.join(resource_dir, "appSettingToolBar.ico"))
-        self.make_icon("helpToolBar", os.path.join(resource_dir, "helpToolBar.ico"))
-        self.make_icon("feedbackToolBar", os.path.join(resource_dir, "feedbackToolBar.ico"))
-        self.make_icon("aboutToolBar", os.path.join(resource_dir, "aboutToolBar.ico"))
+        #
+        self.make_icon("toolBarAppSetting", os.path.join(resource_dir, "toolBarAppSetting.ico"))
+        self.make_icon("toolBarHelp", os.path.join(resource_dir, "toolBarHelp.ico"))
+        self.make_icon("toolBarFeedback", os.path.join(resource_dir, "toolBarFeedback.ico"))
+        self.make_icon("toolBarAbout", os.path.join(resource_dir, "toolBarAbout.ico"))
+        #
+        self.make_icon("toolBoxBoxTreeWidget", os.path.join(resource_dir, "toolBoxBoxTreeWidget.ico"))
+        self.make_icon("toolBoxToolTreeWidget", os.path.join(resource_dir, "toolBoxToolTreeWidget.ico"))
         #
         self.make_icon("tableFile_FileListTreeWidget", os.path.join(resource_dir, "tableFile_FileListTreeWidget.ico"))
         self.make_icon("rasterFile_FileListTreeWidget", os.path.join(resource_dir, "rasterFile_FileListTreeWidget.ico"))
-        #
-        self.make_icon("toolBox_ToolBoxTreeWidget", os.path.join(resource_dir, "toolBox_ToolBoxTreeWidget.ico"))
-        self.make_icon("tool_ToolBoxTreeWidget", os.path.join(resource_dir, "tool_ToolBoxTreeWidget.ico"))
+
         #
         #
         self.make_icon("open_file", os.path.join(resource_dir, "open_file.ico"))
@@ -80,6 +82,8 @@ class InitResource(object):
 
         self.make_icon("train_model2", os.path.join(resource_dir, "train_model2.ico"))
         self.make_icon("test_model", os.path.join(resource_dir, "test_model.ico"))
+
+        self.make_icon("setting", os.path.join(resource_dir, "setting.ico"))
 
         self.make_icon("default", os.path.join(resource_dir, "default.ico"))
 

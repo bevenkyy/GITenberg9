@@ -32,7 +32,7 @@ class FeatureSelectorDialog(QDialog, Ui_FeatureSelectorDialog):
         self.qSetting = setting
         #
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.coordinateAxis = CoordinateAxis()
         self.significanceCharHorizontalLayout.addWidget(self.coordinateAxis)

@@ -35,6 +35,7 @@ class ChartViewDialog(QDialog, Ui_ChartViewDialog):
         self.plot_chart()
 
     def init_ui_element(self):
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectDataFilePushButton.setIcon(get_icon("open_file"))
         self.saveChartPushButton.setIcon(get_icon("save_file"))

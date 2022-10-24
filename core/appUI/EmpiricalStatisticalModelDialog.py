@@ -40,7 +40,7 @@ class EmpiricalStatisticalModelDialog(QDialog, Ui_EmpiricalStatisticalModelDialo
 
     def init_ui_element(self):
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.selectTrainingSamplesPushButton.setIcon(get_icon("open_file"))
         self.selectTestSamplesPushButton.setIcon(get_icon("open_file"))

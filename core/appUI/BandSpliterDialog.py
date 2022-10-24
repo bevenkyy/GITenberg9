@@ -36,7 +36,7 @@ class BandSpliterDialog(QDialog, Ui_BandSpliterDialog):
         self.connect_signal_slot()
 
     def init_ui_element(self):
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
 
     def get_band_index(self, band_str):
         band_index = ""

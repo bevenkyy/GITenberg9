@@ -26,7 +26,7 @@ class ImageFusionSTARFMDialog(QDialog, Ui_ImageFusionSTARFMDialog):
         #
         self.qSetting = setting
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         self.connect_signal_slot()
 

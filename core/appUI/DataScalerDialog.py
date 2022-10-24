@@ -38,7 +38,7 @@ class DataScalerDialog(QDialog, Ui_DataScalerDialog):
         self.cancelPushButton.clicked.connect(self.cancelPushButtonClicked)
     
     def init_ui_element(self):
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
 
     def isMinMaxScalerRadioButtonClicked(self):
         #

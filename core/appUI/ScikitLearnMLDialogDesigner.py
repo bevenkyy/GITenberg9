@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '.\ScikitLearnMLDialogDesigner.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -228,7 +228,7 @@ class Ui_ScikitLearnMLDialog(object):
         self.selectParameterTypeComboBox.setObjectName("selectParameterTypeComboBox")
         self.selectParameterTypeComboBox.addItem("")
         self.selectParameterTypeComboBox.addItem("")
-        # self.selectParameterTypeComboBox.addItem("")====tmp
+        self.selectParameterTypeComboBox.addItem("")
         self.gridLayout.addWidget(self.selectParameterTypeComboBox, 0, 4, 1, 1)
         self.selectParameterTunerLabel = QtWidgets.QLabel(self.scikitLearnSettingGroupBox)
         self.selectParameterTunerLabel.setObjectName("selectParameterTunerLabel")
@@ -565,7 +565,7 @@ class Ui_ScikitLearnMLDialog(object):
         self.selectParameterTypeLabel.setText(_translate("ScikitLearnMLDialog", "参数类型："))
         self.selectParameterTypeComboBox.setItemText(0, _translate("ScikitLearnMLDialog", "默认参数"))
         self.selectParameterTypeComboBox.setItemText(1, _translate("ScikitLearnMLDialog", "调试参数"))
-        # self.selectParameterTypeComboBox.setItemText(2, _translate("ScikitLearnMLDialog", "本地文件"))=====tmp
+        self.selectParameterTypeComboBox.setItemText(2, _translate("ScikitLearnMLDialog", "本地文件"))
         self.selectParameterTunerLabel.setText(_translate("ScikitLearnMLDialog", "参数调试器："))
         self.selectEstimatorLabel.setText(_translate("ScikitLearnMLDialog", "学习器："))
         self.estimatorParameterFileLabel.setText(_translate("ScikitLearnMLDialog", "参数文件："))

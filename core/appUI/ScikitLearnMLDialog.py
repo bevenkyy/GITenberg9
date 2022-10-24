@@ -93,7 +93,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         self.cancelFinishPushButton.clicked.connect(self.cancelFinishPushButtonClicked)
 
     def init_global_UI_element(self):
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         # ===================================================init all pages button icon=========================================================
         self.selectTrainingValidationSamplePushButton.setIcon(get_icon("open_file"))
         self.selectTestSamplePushButton.setIcon(get_icon("open_file"))

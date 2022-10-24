@@ -31,7 +31,7 @@ class FeatureCreatorDialog(QDialog, Ui_FeatureCreatorDialog):
         self.setupUi(self)
         self.qSetting = setting
         #
-        self.setWindowIcon(get_icon("tool_ToolBoxTreeWidget"))
+        self.setWindowIcon(get_icon("toolBoxToolTreeWidget"))
         #
         #========singal and slot========
         self.selectOpenAllSamplesPushButton.clicked.connect(self.selectOpenAllSamplesPushButtonClicked)

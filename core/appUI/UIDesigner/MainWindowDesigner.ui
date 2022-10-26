@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>304</width>
-    <height>569</height>
+    <width>402</width>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>iPyGIRS V0.2.0</string>
+   <string>iPyGIRS V0.2.3</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -42,7 +42,7 @@
       </column>
       <item>
        <property name="text">
-        <string>数据管理工具</string>
+        <string>数据管理</string>
        </property>
        <item>
         <property name="text">
@@ -77,13 +77,33 @@
       </item>
       <item>
        <property name="text">
-        <string>栅格数据工具</string>
+        <string>数理统计</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>经验统计模型</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>应用方程</string>
+        </property>
+       </item>
+      </item>
+      <item>
+       <property name="text">
+        <string>地理处理</string>
        </property>
        <item>
         <property name="text">
          <string>像元值提取</string>
         </property>
        </item>
+      </item>
+      <item>
+       <property name="text">
+        <string>栅格数据</string>
+       </property>
        <item>
         <property name="text">
          <string>波段计算器</string>
@@ -105,7 +125,7 @@
         </property>
         <item>
          <property name="text">
-          <string>移动平均平滑</string>
+          <string>移动平均平滑（当前版本不可用）</string>
          </property>
         </item>
        </item>
@@ -122,17 +142,7 @@
       </item>
       <item>
        <property name="text">
-        <string>数学工具</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>经验统计模型</string>
-        </property>
-       </item>
-      </item>
-      <item>
-       <property name="text">
-        <string>机器学习工具</string>
+        <string>机器学习</string>
        </property>
        <item>
         <property name="text">
@@ -152,7 +162,7 @@
       </item>
       <item>
        <property name="text">
-        <string>数据库工具</string>
+        <string>数据库</string>
        </property>
        <item>
         <property name="text">
@@ -162,12 +172,17 @@
       </item>
       <item>
        <property name="text">
-        <string>Geoserver工具</string>
+        <string>地图服务</string>
        </property>
        <item>
         <property name="text">
-         <string>WMS服务发布</string>
+         <string>Geoserver工具</string>
         </property>
+        <item>
+         <property name="text">
+          <string>WMS服务发布</string>
+         </property>
+        </item>
        </item>
       </item>
      </widget>
@@ -175,17 +190,6 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
  </widget>
  <resources/>
  <connections/>

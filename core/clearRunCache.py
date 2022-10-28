@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-def cleanRunCache(app_dir):
+def clearRunCache(app_dir):
     for script_folder in os.listdir(app_dir):
         script_dir = os.path.join(app_dir, script_folder)
         if os.path.isdir(script_dir):
@@ -15,7 +15,7 @@ def cleanRunCache(app_dir):
 
 def main():
     working_dir = os.path.join(os.getcwd(), "core")
-    cleanRunCache(working_dir)
+    clearRunCache(working_dir)
 
 if __name__ == "__main__":
     #

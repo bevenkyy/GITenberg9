@@ -8,7 +8,7 @@
 
 </div>
 
-**iPyGIRS**，（iPy为前缀，说明该软件由作者喜爱的Python开发，GIRS是Geographic Information and Remote Sensing的缩写）是一个以栅格图像处理和机器学习建模为核心功能，集成了数据预处理、图表绘制、张量计算器、样本创建、像元值提取、波段分离、波段计算、图像融合、经验模型建模、方程应用、MySQL数据库管理、GeoServer数据发布等功能的软件。上图是iPyGIRS-V0.2.0-Beta软件的主界面，下图为iPyGIRS未来完工时所具备的功能示意图，目前仅有部分功能。该软件完全基于Python语言（版本3.7.5）开发，可应用于多种遥感监测研究中。目前公开的最新可用版本为V0.2.1-Beta，后续保持持续更新。
+**iPyGIRS**，（iPy为前缀，说明该软件由作者喜爱的Python开发，GIRS是Geographic Information and Remote Sensing的缩写）是一个以栅格图像处理和机器学习建模为核心功能，集成了数据预处理、图表绘制、张量计算器、样本创建、像元值提取、波段分离、波段计算、图像融合、经验模型建模、方程应用、MySQL数据库管理、GeoServer数据发布等功能的软件。上图是iPyGIRS-V0.2.3-Beta软件的主界面，下图为iPyGIRS未来完工时所具备的功能示意图，目前仅有部分功能。该软件完全基于Python语言（版本3.7.5）开发，可应用于多种遥感监测研究中。目前公开的最新可用版本为V0.2.3-Beta，后续保持持续更新。
 
 ![iPyGIRS功能模块](./images/iPyGIRS功能模块.png)
 

@@ -19,8 +19,9 @@ def sort_sampels(data_array):
     return data_array[data_array[:,-1].argsort()]
 
 
-def _sampling_index(start_index, stop_index, group_samples_count):
+def _sampling_index(start_index:int, stop_index:int, group_samples_count:int)->np.ndarray:
     '''
+    在start_index, stop_index之间返回group_samples_count个均匀间隔的索引
     '''
     tmp_sampling_index = np.linspace(start_index, stop_index, group_samples_count)
     sampling_index = np.floor(tmp_sampling_index).astype(int)
@@ -30,6 +31,7 @@ def _sampling_index(start_index, stop_index, group_samples_count):
 def stratified_sampling(data_array, trainval_samples_count, test_samples_count, group_samples_count, 
                         true_train_samples_count, true_test_samples_count):
     '''
+    模拟分层抽样
     '''
     trainval_samples = np.zeros([trainval_samples_count, data_array.shape[1]], dtype = np.float64)
     test_samples = np.zeros([test_samples_count, data_array.shape[1]], dtype = np.float64)
@@ -61,7 +63,7 @@ def stratified_sampling(data_array, trainval_samples_count, test_samples_count, 
             remaining_samples[n, :] = np.array(each_sample)[np.newaxis,:]
             n += 1
     #
-    test_remaining_samples_count = np.floor(abs(float(test_samples.shape[0]) - true_test_samples_count))
+    test_remaining_samples_count = abs(test_samples.shape[0] - true_test_samples_count)
     test_remaining_samples_index = _sampling_index(0, remaining_samples.shape[0] - 1, test_remaining_samples_count)
     for m in range(remaining_samples.shape[0]):
         if m in test_remaining_samples_index:
@@ -75,12 +77,13 @@ def stratified_sampling(data_array, trainval_samples_count, test_samples_count, 
 def trainval_test_split(data_array, split_size):
     '''
     '''
-    true_trainval_samples_count = data_array.shape[0] * (1 - split_size)
-    true_test_samples_count = data_array.shape[0] * split_size
+    # 用户选择划分比列后的真是样本数
+    true_trainval_samples_count = int(np.floor(data_array.shape[0] * (1 - split_size)))
+    true_test_samples_count = int(np.floor(data_array.shape[0] * split_size))
     
-    #
-    trainval_samples_count = int(np.floor(np.floor(true_trainval_samples_count)) / 10.0) * 10
-    test_samples_count = int(np.floor(np.floor(true_test_samples_count)) / 10.0) * 10
+    # 整数个批次分层后，样本数，须做处理以达到真实样本数
+    trainval_samples_count = int(np.floor(true_trainval_samples_count / 10.0)) * 10
+    test_samples_count = int(np.floor(true_test_samples_count / 10.0)) * 10
     group_samples_count = int(np.floor(test_samples_count / 10.0))
     #
     trainval_samples, test_samples = stratified_sampling(sort_sampels(data_array),

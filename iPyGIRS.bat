@@ -2,7 +2,7 @@
 
 SET batFileDir=%cd%
 SET pythonExeFilePath=/python-3.7.5-embed-amd64/python.exe
-SET MainAppFilePath=/core/main.py
+SET MainAppFilePath=/src/main.py
 SET pythonExeAbsFilePath=%batFileDir%%pythonExeFilePath%
 REM SET pythonExeAbsFilePath=Python
 SET MainAppAbsFilePath=%batFileDir%%MainAppFilePath%

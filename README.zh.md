@@ -58,21 +58,33 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ``` file directory tree
 |- iPyGIRS
-    |- core
-        |- appUI
-        |- bin
-        |- chart
-        |- data
-        |- fileIO
-        |- MathLib
-        |- model
-        |- raster
-        |- resource
-        |- util
     |- docs
     |- images
     |- python-3.7.5-embed-amd64
     |- setup
+    |- src
+        |- appUI
+            |- ...
+        |- bin
+            |- ...
+        |- chart
+            |- ...
+        |- data
+            |- ...
+        |- fileIO
+            |- ...
+        |- MathLib
+            |- ...
+        |- model
+            |- ...
+        |- raster
+            |- ...
+        |- resource
+            |- ...
+        |- util
+            |- ...
+        |- clear.py
+        |- main.py
     |- iPyGIRS.bat
     |- LICENSE
     |- README.zh.md

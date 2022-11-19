@@ -21,7 +21,7 @@ def sort_sampels(data_array):
 
 def _sampling_index(start_index:int, stop_index:int, group_samples_count:int)->np.ndarray:
     '''
-    在start_index, stop_index之间返回group_samples_count个均匀间隔的索引
+    返回在start_index, stop_index之间的group_samples_count个均匀间隔的索引
     '''
     tmp_sampling_index = np.linspace(start_index, stop_index, group_samples_count)
     sampling_index = np.floor(tmp_sampling_index).astype(int)

@@ -96,8 +96,7 @@ class SampleMakerDialog(QDialog, Ui_SampleMakerDialog):
                     self.sampleDistributionChartGridLayout.removeWidget(self.training_cv_axis)
                     self.sampleDistributionChartGridLayout.addWidget(self.training_cv_stats_Chart, 0,0,1,1)
                     #
-                    self.test_stats_Chart = HistgramChart(self.test_samples[:,-1], 
-                                                        title="Test Samples") 
+                    self.test_stats_Chart = HistgramChart(self.test_samples[:,-1], title="Test Samples") 
                     self.sampleDistributionChartGridLayout.removeWidget(self.test_axis)
                     self.sampleDistributionChartGridLayout.addWidget(self.test_stats_Chart, 0,1,1,1)
                 except Exception as split_sample_err_info:

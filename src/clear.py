@@ -18,5 +18,4 @@ def main():
     clear_run_cache(working_dir)
 
 if __name__ == "__main__":
-    #
     main()

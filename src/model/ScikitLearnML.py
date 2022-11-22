@@ -95,7 +95,8 @@ class ScikitLearnML:
             elif self._estimator_name == "DecisionTreeRegressor":
                 self._init_estimator = tree.DecisionTreeRegressor(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "SVR":
-                self._init_estimator = svm.SVR(**self._basic_params, random_state = self.seed)
+                # SVR与SVC不同，没有random_state参数
+                self._init_estimator = svm.SVR(**self._basic_params)
             elif self._estimator_name == "MLPRegressor":
                 self._init_estimator = neural_network.MLPRegressor(**self._basic_params, random_state = self.seed)
             elif self._estimator_name == "RandomForestRegressor":

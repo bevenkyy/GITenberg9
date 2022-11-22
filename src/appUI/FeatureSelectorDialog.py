@@ -2,6 +2,9 @@
 
 import os
 import sys
+from matplotlib.pyplot import title
+
+from numpy.lib.function_base import append
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -22,9 +25,9 @@ class FeatureSelectorDialog(QDialog, Ui_FeatureSelectorDialog):
     qSetting = None
     #     
     sample = None
-    feature_stats_info = {"variance":None,
-                          "pearson_corrcoef":None,
-                          "distance_corrcoef":None}
+    feature_stats = {"variance":None,
+                    "pearson_corrcoef":None,
+                    "distance_corrcoef":None}
 
     def __init__(self, setting):
         super(FeatureSelectorDialog, self).__init__(None)
@@ -37,10 +40,14 @@ class FeatureSelectorDialog(QDialog, Ui_FeatureSelectorDialog):
         self.coordinateAxis = CoordinateAxis()
         self.significanceCharHorizontalLayout.addWidget(self.coordinateAxis)
         #
+        # 临时禁用
+        self.selectSalientFeatureComboBox.setEnabled(False)
+        self.selectSaveSalientFeaturePushButton.setEnabled(False)
+        self.selectSaveSalientFeatureLineEdit.setEnabled(False)
+        #
         #========singal and slot========
         self.selectOpenDataFilePushButton.clicked.connect(self.selectOpenDataFilePushButtonClicked)
         self.selectSaveSalientFeaturePushButton.clicked.connect(self.selectSaveSalientFeaturePushButtonClicked)
-        #
 
     def selectOpenDataFilePushButtonClicked(self):
         #
@@ -54,25 +61,20 @@ class FeatureSelectorDialog(QDialog, Ui_FeatureSelectorDialog):
         if file_path != "":
             self.selectOpenDataFileLineEdit.setText(file_path)
             #
-            self.sample = ExcelIO.read_excel(file_path)
+            self.sample = ExcelIO.read_excel(file_path).astype(np.float64)
             #
-            variance_array = np.zeros([1,self.sample.shape[1]], dtype=np.float64)
-            pearson_corrcoef_array = np.zeros([1,self.sample.shape[1]], dtype=np.float64)
-            distance_corrcoef_array = np.zeros([1,self.sample.shape[1]], dtype=np.float64)
-            for j in range(self.sample.shape[1]):
-                variance_array[0, j] = calculate_variance(self.sample[:,j])
-                pearson_corrcoef_array[0, j] = calculate_pearson_correlation(self.sample[:,j], self.sample[:,-1])
-                distance_corrcoef_array[0, j] = calculate_distance_correlation(self.sample[:,j], self.sample[:,-1])
+            variance_array = []
+            pearson_corrcoef_array = []
+            distance_corrcoef_array = []
+            for j in range(self.sample.shape[1] - 1):
+                variance_array.append(calculate_variance(self.sample[:,j]))
+                pearson_corrcoef_array.append(calculate_pearson_correlation(self.sample[:,j], self.sample[:,-1]))
+                distance_corrcoef_array.append(calculate_distance_correlation(self.sample[:,j], self.sample[:,-1]))
             #
-            self.feature_stats_info.update({"variance":variance_array,
-                                            "pearson_corrcoef":pearson_corrcoef_array,
-                                            "distance_corrcoef":distance_corrcoef_array})
-            #
-            bar_data = np.vstack([self.feature_stats_info.get("variance")[:,:-1],
-                                  self.feature_stats_info.get("pearson_corrcoef")[:,:-1],
-                                  self.feature_stats_info.get("distance_corrcoef")[:,:-1]])
-            legend = ["Variance","Pearson Correlation","Distance Correlation"]
-            self.barChart = BarChart(bar_data, legend)
+            self.feature_stats = (variance_array, pearson_corrcoef_array, distance_corrcoef_array)
+            self.legend = ["Variance","Pearson Correlation","Distance Correlation"]
+            self.tick_label = ["Feature{}".format(i) for i in range(1, self.sample.shape[1])]
+            self.barChart = BarChart(self.feature_stats, self.legend, tick_label = self.tick_label, title = "特征分布统计图")
             self.significanceCharHorizontalLayout.removeWidget(self.coordinateAxis)
             self.significanceCharHorizontalLayout.addWidget(self.barChart)
             #

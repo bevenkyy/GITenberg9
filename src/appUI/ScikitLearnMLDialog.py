@@ -7,7 +7,7 @@ from multiprocessing import Process, Manager
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-import psutil
+import multiprocessing
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
@@ -182,7 +182,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
         #     pass
 
     def init_trainEstimatorPage_UI_element(self):
-        self.nJobsItem = [str(count + 1) for count in range(psutil.cpu_count())]
+        self.nJobsItem = [str(count + 1) for count in range(multiprocessing.cpu_count())]
         self.nJobsComboBox.addItems(self.nJobsItem)
         self.nJobsComboBox.setCurrentIndex(len(self.nJobsItem) - 3)
         if self.task_type == "Classification" or self.task_type == "Cluster":
@@ -444,6 +444,7 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
             fit_gif.start()
             self.stepTipLabel.setText("正在训练模型,请稍后！")
             #
+            print(self.estimator)
             self.fit_thread = RunFitEstimatorThread(self.training_cv_samples, self.test_samples,
                                                     self.task_type, self.estimator, 
                                                     self.params_type, self.basic_params, self.training_params)
@@ -764,6 +765,7 @@ class RunFitEstimatorThread(QtCore.QThread):
             estimator = ScikitLearnML(self.task_type, self.estimator, self.params_type, 
                                       self.basic_params, self.training_params)
             #
+            # 下个版本须做多进程异常捕获处理
             fit_evaluate_process = Process(target = estimator.fit_validate,
                                            args = (training_cv_X, training_cv_y, test_X, test_y,
                                                    process_manager_return_estimator_data))

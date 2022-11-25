@@ -630,8 +630,8 @@
                 },
                 "max_iter":{
                     "name":"最大迭代次数",
-                    "value":"None",
-                    "type":["None", "int"]
+                    "value":1000,
+                    "type":["int"]
                 },
                 "tol":{
                     "name":"优化下限",

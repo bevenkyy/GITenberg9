@@ -7,7 +7,7 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from sklearn.externals import joblib
+import joblib
 
 
 def _load_estimator(file_path):

@@ -12,10 +12,12 @@ from scipy.stats import linregress
 
 import numpy as np
 import matplotlib
-matplotlib.use("Qt5Agg")
+matplotlib.use("Qt5Agg")    #必须放在其他matplotlib引用之前
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+plt.rcParams["font.sans-serif"] = ["SimHei"] #用来正常显示中文标签
+plt.rcParams["axes.unicode_minus"] = False #用来正常显示负号
 
 from MathLib.stats_score import *
 
@@ -58,6 +60,105 @@ class CoordinateAxis(FigureCanvas):
         axes.set_xlim(self.xlim)
         axes.set_ylim(self.ylim)
         #
+        figure.set_tight_layout(True)
+        #
+        return figure
+
+class LineChart(FigureCanvas):
+
+    def __init__(self, data,
+                 title = "line chart", xlabel = "x", ylabel = "value", xlim = (0, 2), ylim = (0, 2), 
+                 dpi=100, figsize = (8, 8), face_color=(0.98,0.98,0.98), line_color = "#2E6D8E"):
+        '''
+        '''
+        self.data = data
+        self.title = title
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+        self.xlim = xlim
+        self.ylim = ylim
+        self.dpi = dpi
+        self.figsize = figsize
+        self.face_color = face_color
+        self.line_color = line_color
+        #
+        figure = self.plot_line()
+        #
+        FigureCanvas.__init__(self, figure)
+        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+        #
+        self.draw()
+
+    def plot_line(self):
+        figure = Figure(figsize = self.figsize, dpi = self.dpi, facecolor = self.face_color)
+        #
+        axes = figure.add_subplot(111)
+        axes.set_title(self.title, fontsize = 12)
+        axes.set_xlabel(self.xlabel)
+        axes.set_ylabel(self.ylabel)
+        # axes.set_xlim(self.xlim)
+        # axes.set_ylim(self.ylim)
+        axes.plot(np.arange(1, self.data.shape[0] + 1), self.data, color = self.line_color)
+        #
+        figure.set_tight_layout(True)
+        #
+        return figure
+
+class BarChart(FigureCanvas):
+
+    def __init__(self, data, legend,
+                 title = "柱状图", xlabel = "class", ylabel = "value", tick_label = None, dpi=100, figure_size = (8, 8), 
+                 facecolor=(0.98,0.98,0.98), edgecolor = (0.25,0.25,0.25)):
+        '''
+        '''
+        self.data = data
+        self.legend = legend
+        #
+        self.title = title
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+        self.tick_label = tick_label
+        #
+        self.figure_size = figure_size
+        self.facecolor = facecolor
+        self.edgecolor = edgecolor
+        self.dpi = dpi
+        #
+        figure = self.plot_bar()
+        #
+        FigureCanvas.__init__(self, figure)
+        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
+        #
+        self.draw()
+
+
+    def plot_bar(self):
+        '''
+        '''
+        figure = plt.figure(figsize = self.figure_size, dpi = self.dpi, facecolor = self.facecolor)
+        # 
+        axes = figure.add_subplot(111)
+        axes.set_title(self.title, fontsize = 12)
+        axes.set_xlabel(self.xlabel)
+        axes.set_ylabel(self.ylabel)
+        #
+        # x = []
+        # y = []
+        # Counter的用法
+        # for value, count in Counter(self.data).items():
+        #     x.append(value)
+        #     y.append(count)
+        #
+        bar_handles = []
+        for i, (stat_value, legend) in enumerate(zip(self.data, self.legend)):
+            x = tuple(map(lambda x: x + i * 0.3, [i for i in range(1, len(stat_value) + 1)]))
+            y = stat_value
+            handle = axes.bar(x, y, width = 0.3, tick_label = self.tick_label, label = legend)
+            bar_handles.append(handle)
+        #
+        axes.legend(handles = bar_handles, loc='best')
         figure.set_tight_layout(True)
         #
         return figure
@@ -105,54 +206,6 @@ class HistgramChart(FigureCanvas):
         # axes.set_xlim(self.xlim)
         # axes.set_ylim(self.ylim)
         axes.hist(self.data, bins = self.bins, edgecolor = self.edgecolor)
-        #
-        figure.set_tight_layout(True)
-        #
-        return figure
-
-class BarChart(FigureCanvas):
-
-    def __init__(self, data,
-                 title = "bar chart", xlabel = "class", ylabel = "count", dpi=100, figure_size = (8, 8), 
-                 facecolor=(0.98,0.98,0.98), edgecolor = (0.25,0.25,0.25)):
-        '''
-        '''
-        self.data = data
-        #
-        self.title = title
-        self.xlabel = xlabel
-        self.ylabel = ylabel
-        #
-        self.figure_size = figure_size
-        self.facecolor = facecolor
-        self.edgecolor = edgecolor
-        self.dpi = dpi
-        #
-        figure = self.plot_bar()
-        #
-        FigureCanvas.__init__(self, figure)
-        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        FigureCanvas.updateGeometry(self)
-        #
-        self.draw()
-
-
-    def plot_bar(self):
-        '''
-        '''
-        figure = plt.figure(figsize = self.figure_size, dpi = self.dpi, facecolor = self.facecolor)
-        # 
-        axes = figure.add_subplot(111)
-        axes.set_title(self.title, fontsize = 12)
-        axes.set_xlabel(self.xlabel)
-        axes.set_ylabel(self.ylabel)
-        #
-        x = []
-        y = []
-        for tmp_x, tmp_y in Counter(self.data).items():
-            x.append(tmp_x)
-            y.append(tmp_y)
-        axes.bar(x, y)
         #
         figure.set_tight_layout(True)
         #

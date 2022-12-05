@@ -1,0 +1,186 @@
+{
+    "online_packages": [
+        {
+            "name": "numpy",
+            "version": "1.18.5",
+            "status": false
+        },
+        {
+            "name": "numba",
+            "version": "0.53.1",
+            "status": false
+        },
+        {
+            "name": "numexpr",
+            "version": "2.7.3",
+            "status": false
+        },
+        {
+            "name": "scipy",
+            "version": "1.6.3",
+            "status": false
+        },
+        {
+            "name": "xlrd",
+            "version": "1.2.0",
+            "status": false
+        },
+        {
+            "name": "openpyxl",
+            "version": "3.0.7",
+            "status": false
+        },
+        {
+            "name": "pandas",
+            "version": "1.2.5",
+            "status": false
+        },
+        {
+            "name": "Pillow",
+            "version": "8.3.1",
+            "status": false
+        },
+        {
+            "name": "matplotlib",
+            "version": "3.4.2",
+            "status": false
+        },
+        {
+            "name": "scikit-image",
+            "version": "0.18.2",
+            "status": false
+        },
+        {
+            "name": "gdal",
+            "version": "2.4.1",
+            "status": false
+        },
+        {
+            "name": "rasterio",
+            "version": "1.0.24",
+            "status": false
+        },
+        {
+            "name": "fiona",
+            "version": "1.8.6",
+            "status": false
+        },
+        {
+            "name": "dbfread",
+            "version": "2.0.7",
+            "status": false
+        },
+        {
+            "name": "PyMySQL",
+            "version": "1.0.2",
+            "status": false
+        },
+        {
+            "name": "joblib",
+            "version": "1.0.1",
+            "status": false
+        },
+        {
+            "name": "scikit-learn",
+            "version": "0.24.2",
+            "status": false
+        },
+        {
+            "name": "PyQt5",
+            "version": "5.15.4",
+            "status": false
+        }
+    ],
+    "offline_packages": [
+        {
+            "name": "numpy-1.18.5+mkl-cp37-cp37m-win_amd64.whl",
+            "version": "1.18.5",
+            "status": false
+        },
+        {
+            "name": "numba-0.53.1-cp37-cp37m-win_amd64.whl",
+            "version": "0.53.1",
+            "status": false
+        },
+        {
+            "name": "numexpr-2.7.3-cp37-cp37m-win_amd64.whl",
+            "version": "2.7.3",
+            "status": false
+        },
+        {
+            "name": "scipy-1.6.3-cp37-cp37m-win_amd64.whl",
+            "version": "1.6.3",
+            "status": false
+        },
+        {
+            "name": "xlrd-1.2.0-py2.py3-none-any.whl",
+            "version": "1.2.0",
+            "status": false
+        },
+        {
+            "name": "openpyxl-3.0.7-py3-none-any.whl",
+            "version": "3.0.7",
+            "status": false
+        },
+        {
+            "name": "pandas-1.2.5-cp37-cp37m-win_amd64.whl",
+            "version": "1.2.5",
+            "status": false
+        },
+        {
+            "name": "Pillow-8.3.1-cp37-cp37m-win_amd64.whl",
+            "version": "8.3.1",
+            "status": false
+        },
+        {
+            "name": "matplotlib-3.4.2-cp37-cp37m-win_amd64.whl",
+            "version": "3.4.2",
+            "status": false
+        },
+        {
+            "name": "scikit_image-0.18.2-cp37-cp37m-win_amd64.whl",
+            "version": "0.18.2",
+            "status": false
+        },
+        {
+            "name": "GDAL-2.4.1-cp37-cp37m-win_amd64.whl",
+            "version": "2.4.1",
+            "status": false
+        },
+        {
+            "name": "rasterio-1.0.24+gdal24-cp37-cp37m-win_amd64.whl",
+            "version": "1.0.24",
+            "status": false
+        },
+        {
+            "name": "Fiona-1.8.6-cp37-cp37m-win_amd64.whl",
+            "version": "1.8.6",
+            "status": false
+        },
+        {
+            "name": "dbfread-2.0.7-py2.py3-none-any.whl",
+            "version": "2.0.7",
+            "status": false
+        },
+        {
+            "name": "PyMySQL-1.0.2-py3-none-any.whl",
+            "version": "1.0.2",
+            "status": false
+        },
+        {
+            "name": "joblib-1.0.1-py3-none-any.whl",
+            "version": "1.0.1",
+            "status": false
+        },
+        {
+            "name": "scikit_learn-0.24.2-cp37-cp37m-win_amd64.whl",
+            "version": "0.24.2",
+            "status": false
+        },
+        {
+            "name": "PyQt5-5.15.4-cp36.cp37.cp38.cp39-none-win_amd64.whl",
+            "version": "5.15.4",
+            "status": false
+        }
+    ]
+}

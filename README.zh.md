@@ -4,11 +4,11 @@
 
 <div align=center>
 
-![iPyGIRS-V0.2.3-Beta主界面](./images/iPyGIRS-V0.2.3-Beta.png)
+![iPyGIRS-V0.2.4-Beta主界面](./images/iPyGIRS-V0.2.4-Beta.png)
 
 </div>
 
-**iPyGIRS**，（iPy为前缀，说明该软件由作者喜爱的Python开发，GIRS是Geographic Information and Remote Sensing的缩写）是一个以栅格图像处理和机器学习建模为核心功能，集成了数据预处理、图表绘制、张量计算器、样本创建、像元值提取、波段分离、波段计算、图像融合、经验模型建模、方程应用、MySQL数据库管理、GeoServer数据发布等功能的软件。上图是iPyGIRS-V0.2.3-Beta软件的主界面，下图为iPyGIRS未来完工时所具备的功能示意图，目前仅有部分功能。该软件完全基于Python语言（版本3.7.5）开发，可应用于多种遥感监测研究中。目前公开的最新可用版本为V0.2.3-Beta，后续保持持续更新。
+**iPyGIRS**，（iPy为前缀，说明该软件由作者喜爱的Python开发，GIRS是Geographic Information and Remote Sensing的缩写）是一个以栅格图像处理和机器学习建模为核心功能，集成了数据预处理、图表绘制、张量计算器、样本创建、像元值提取、波段分离、波段计算、图像融合、经验模型建模、方程应用、MySQL数据库管理、GeoServer数据发布等功能的软件。上图是iPyGIRS-V0.2.4-Beta软件的主界面，下图为iPyGIRS未来完工时所具备的功能示意图，目前仅有部分功能。该软件完全基于Python语言（版本3.7.5）开发，可应用于多种遥感监测研究中。目前公开的最新可用版本为V0.2.4-Beta，后续保持持续更新。
 
 ![iPyGIRS功能模块](./images/iPyGIRS功能模块.png)
 
@@ -28,7 +28,7 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 ## **3. 最新版本及其更新内容**
 
-**当前最新可用版本：V0.2.3**，通过本次更新，您将能更好地通过“scikit-learn机器学习”工具完成“分类”、“聚类”和“回归”机器学习的建模及参数调试任务 本版本的更新内容如下所示：
+**当前最新可用版本：V0.2.4**，通过本次更新，您将能更好地通过“scikit-learn机器学习”工具完成“分类”、“聚类”和“回归”机器学习的建模及参数调试任务 本版本的更新内容如下所示：
 
 - 1. 工具箱及工具的名称、顺序做了微调，其中原“栅格数据”下的“像元值提取”工具，移动到了新增的“地理处理”工具集下；
 - 2. 解决“scikit-learn机器学习”工具的Bug。修复了“模型类型”选择页面模型类型描述错误的问题；修复了无法将用户修改了的模型参数应用到模型的严重bug，该bug导致最终保存的模型，不是应用了用户调优参数后的模型；
@@ -50,7 +50,7 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 
 - **使用嵌入式Python作为解释器**
 
-如您的系统中没有安装Python，或者您需要将“iPyGIRS”程序复制给别人用，则建议使用嵌入式Python作为解释器。在所下载的文件中，存在文件夹——“python-3.7.5-embed-amd64”，这就是Python官方提供的嵌入式Python，此时您需要使用“setup”目录（文件夹）下的“setup.exe”程序来安装第三方包，具体步骤如下文所示：
+如您的系统中没有安装Python，或者您需要将“iPyGIRS”程序复制给别人用，则建议使用嵌入式Python作为解释器。在所下载的文件中，存在文件夹——“python”，这就是Python官方提供的嵌入式Python，此时您需要使用“installer/setup”目录（文件夹）下的“setup.exe”程序来安装第三方包，具体步骤如下文所示：
 
 ### **（1）下载iPyGIRS项目文件**
 
@@ -60,10 +60,14 @@ iPyGIRS及其安装二进制程序完全基于Python开发，软件架构如下�
 |- iPyGIRS
     |- docs
     |- images
-    |- python-3.7.5-embed-amd64
-    |- setup
+    |- python
+    |- installer
+        |-...
+        |-setup
+            |-setup.exe
+            |-...
     |- src
-        |- appUI
+        |- gui
             |- ...
         |- bin
             |- ...
@@ -118,17 +122,16 @@ GDAL|为rasterio包提供底层依赖
 rasterio|为iPyGIRS程序提供栅格数据文件的读写功能
 PyMySQL|为iPyGIRS程序提供MySQL数据库的操作接口
 joblib|为iPyGIRS程序提供大数据文件，内存数据磁盘缓存，保存至文件，并行计算功能
-psutil|为iPyGIRS程序提供获取系统、电脑硬件信息的功能
 scikit-learn|为iPyGIRS程序提供样本划分、特征选择、机器学习建模、训练、验证、测试、评估、绘制学习曲线等功能
 PyQt5|QT5的Python封装，为iPyGIRS程序提供界面
 
 ### **（3）安装第三方Python包**
 
-下载完所有第三方包后，使用“./iPyGIRS/setup/setup.exe”程序进行安装（**安装过程请确保电脑能够正常上网，因为虽然绝大多数第三方Python包已经下载到本地了，但部分第三方Python包仍须自行下载其它依赖包安装**）。该安装程序需要两个参数：
+下载完所有第三方包后，使用“./iPyGIRS/installer/setup/setup.exe”程序进行安装（**安装过程请确保电脑能够正常上网，因为虽然绝大多数第三方Python包已经下载到本地了，但部分第三方Python包仍须自行下载其它依赖包安装**）。该安装程序需要两个参数：
 
 - 刚才所下载的第三方Python包的存放路径
 
-- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIRS/python-3.7.5-embed-amd64/python.exe”）。
+- Python解释器的绝对路径（该Python解释器位于所下载的iPyGIRS程序文件中，相对路径为“./iPyGIRS/python/python.exe”）。
 
 ![第三方Python包](./images/RunInstaller.gif)
 

@@ -3,16 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QGridLayout, QMessageBox, QHBoxLayout
 import numpy as np
 
-from InitResource import get_icon, get_pixmap
+from utils.icons import get_icon, get_pixmap
 from SampleMakerDialogDesigner import Ui_SampleMakerDialog
-from fileIO import ExcelIO
+from fileio import ExcelIO
 from data import SampleMaker
 from chart.StatsChart import CoordinateAxis, LineChart, HistgramChart 
 

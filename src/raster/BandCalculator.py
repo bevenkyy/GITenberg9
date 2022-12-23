@@ -4,14 +4,14 @@ import os
 import sys
 from collections import OrderedDict
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import re
 import numpy as np
 import numexpr as ne
 
-from fileIO import RasterImgIO
+from fileio import RasterImgIO
 
 
 def parse_formula(formula_str):

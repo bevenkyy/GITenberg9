@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.3"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "iPyGIRS V0.2.4"))
         __sortingEnabled = self.toolBoxTreeWidget.isSortingEnabled()
         self.toolBoxTreeWidget.setSortingEnabled(False)
         self.toolBoxTreeWidget.topLevelItem(0).setText(0, _translate("MainWindow", "数据管理"))

@@ -13,8 +13,8 @@ __author__ = "xingrui"
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np
 from sklearn import (linear_model, tree, svm,
@@ -22,7 +22,7 @@ from sklearn import (linear_model, tree, svm,
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import KFold, GridSearchCV, learning_curve
 
-from MathLib.stats_score import *
+from mathlib.stats_score import *
 
 class ScikitLearnML:
 

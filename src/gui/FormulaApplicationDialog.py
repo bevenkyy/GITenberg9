@@ -5,16 +5,13 @@ import sys
 import re
 from multiprocessing import Process, Manager
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 import numexpr as ne
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
-from fileIO import ExcelIO, RasterImgIO
+from fileio import ExcelIO, RasterImgIO
 from data.FeatureProcessor import calculate_variance, calculate_pearson_correlation, calculate_distance_correlation
-from InitResource import get_icon, get_pixmap, get_gif
+from utils.icons import get_icon, get_pixmap, get_gif
 
 from FormulaApplicationDialogDesigner import Ui_FormulaApplicationDialog
 

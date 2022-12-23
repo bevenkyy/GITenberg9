@@ -3,17 +3,14 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
-from fileIO import ExcelIO, RasterImgIO, ModelIO
+from fileio import ExcelIO, RasterImgIO, ModelIO
 from data.DataPreprocessor import min_max_scaler, standard_scaler
 from raster.BandCalculator import band_calc
 from BandCalculatorDialogDesigner import Ui_BandCalculatorDialog
-from InitResource import get_icon
+from utils.icons import get_icon
 
 
 class BandCalculatorDialog(QDialog, Ui_BandCalculatorDialog):

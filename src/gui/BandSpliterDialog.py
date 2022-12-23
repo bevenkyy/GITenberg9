@@ -3,17 +3,14 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 from BandSpliterDialogDesigner import Ui_BandSpliterDialog
-from InitResource import get_icon
+from utils.icons import get_icon
 
-from fileIO import ModelIO, RasterImgIO
+from fileio import ModelIO, RasterImgIO
 from raster import BandSplitter
 
 class BandSpliterDialog(QDialog, Ui_BandSpliterDialog):

@@ -3,8 +3,8 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import re
 from osgeo import gdal, osr, gdalconst
@@ -51,9 +51,9 @@ def read_geotiff(file_path, index = None, xoff = 0, yoff = 0,
         for i in index:
             if i > dataset.RasterCount:
                     raise Exception("Invalid image index parameter!")
-                else:
-                    band = dataset.GetRasterBand(i + 1)
-                    img_dcit["B" + str(i)] = band.ReadAsArray(xoff, yoff, win_xsize, win_ysize, buf_type)
+            else:
+                band = dataset.GetRasterBand(i + 1)
+                img_dcit["B" + str(i)] = band.ReadAsArray(xoff, yoff, win_xsize, win_ysize, buf_type)
     else:
         raise Exception("Index parameter must be the type: int, tuple or list!")
     #

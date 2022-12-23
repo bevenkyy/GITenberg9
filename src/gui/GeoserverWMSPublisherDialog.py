@@ -3,9 +3,6 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import unicodedata
 
 import numpy as np
@@ -14,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 
 from GeoserverWMSPublisherDialogDesigner import Ui_GeoserverWMSPublisherDialog
-from InitResource import get_icon, get_pixmap, get_gif
+from utils.icons import get_icon, get_pixmap, get_gif
 from data.GeoserverManagement import GeoserverManagement
 
 class GeoserverWMSPublisherDialog(QDialog, Ui_GeoserverWMSPublisherDialog):
@@ -145,7 +142,7 @@ class GeoserverWMSPublisherDialog(QDialog, Ui_GeoserverWMSPublisherDialog):
         
 def main(setting):
     app = QApplication(sys.argv)
-    publishGeoserverWMSDialog = PublishGeoserverWMSDialog(setting)
+    publishGeoserverWMSDialog = GeoserverWMSPublisherDialog(setting)
     publishGeoserverWMSDialog.show()
     sys.exit(app.exec_())
 

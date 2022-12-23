@@ -4,8 +4,8 @@ import os
 import sys
 from collections import OrderedDict
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import rasterio
 import numpy as np

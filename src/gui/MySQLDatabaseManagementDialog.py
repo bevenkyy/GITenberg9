@@ -3,19 +3,16 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
-from fileIO import ExcelIO, ModelIO
+from fileio import ExcelIO, ModelIO
 from data.DataPreprocessor import min_max_scaler, standard_scaler
 
 from MySQLDatabaseManagementDialogDesigner import Ui_MySQLDatabaseManagementDialog
 from data.DatabaseManagement import query_database_info, MySQLDBManagement
 from data import GeoserverManagement
-from InitResource import get_icon
+from utils.icons import get_icon
 
 class MySQLDatabaseManagementDialog(QDialog, Ui_MySQLDatabaseManagementDialog):
 

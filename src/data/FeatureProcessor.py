@@ -3,14 +3,14 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import re
 import numpy as np
 import numexpr as ne
 from scipy.spatial.distance import pdist, squareform
-from util import convert_data_structure
+from utils import convert_data_structure
 
 
 def get_initialization_feature(features_count):

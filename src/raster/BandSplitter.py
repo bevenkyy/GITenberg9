@@ -3,13 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import re
 import numpy as np
 
-from fileIO import RasterImgIO
+from fileio import RasterImgIO
 
 
 def extract_sub_multi_band(in_file_name, band_index_list, save_format, save_file_name):

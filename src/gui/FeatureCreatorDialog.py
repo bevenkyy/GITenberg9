@@ -3,16 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
-from fileIO import ExcelIO, ModelIO
-from InitResource import get_icon
+from fileio import ExcelIO, ModelIO
+from utils.icons import get_icon
 from data.FeatureProcessor import *
-from util import convert_data_structure
+from utils import convert_data_structure
 from chart.StatsChart import  CoordinateAxis, BarChart
 from FeatureCreatorDialogDesigner import Ui_FeatureCreatorDialog
 

@@ -3,9 +3,6 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import unicodedata
 
 import numpy as np
@@ -14,8 +11,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 
 from EmpiricalStatisticalModelDialogDesigner import Ui_EmpiricalStatisticalModelDialog
-from InitResource import get_icon, get_pixmap, get_gif
-from fileIO import ModelIO, ExcelIO
+from utils.icons import get_icon, get_pixmap, get_gif
+from fileio import ModelIO, ExcelIO
 from model.EmpiricStats import EmpiricStats
 from ChartViewDialog import ChartViewDialog
 

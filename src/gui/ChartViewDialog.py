@@ -3,14 +3,11 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 
 from ChartViewDialogDesigner import Ui_ChartViewDialog
-from InitResource import get_icon
+from utils.icons import get_icon
 from chart.StatsChart import *
 
 class ChartViewDialog(QDialog, Ui_ChartViewDialog):

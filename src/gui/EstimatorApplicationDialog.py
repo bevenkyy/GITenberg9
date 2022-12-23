@@ -3,17 +3,14 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import numpy as np
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 from EstimatorApplicationDialogDesigner import Ui_EstimatorApplicationDialog
 
-from InitResource import get_icon, get_pixmap, get_gif
-from fileIO import ModelIO
+from utils.icons import get_icon, get_pixmap, get_gif
+from fileio import ModelIO
 from model import ModelApplication
 
 class EstimatorApplicationDialog(QDialog, Ui_EstimatorApplicationDialog):
@@ -191,7 +188,7 @@ class RunThread(QtCore.QThread):
         
 def main(setting):
     app = QApplication(sys.argv)
-    modelApplicationDialog = ModelApplicationDialog(setting)
+    modelApplicationDialog = EstimatorApplicationDialog(setting)
     modelApplicationDialog.show()
     sys.exit(app.exec_())
 

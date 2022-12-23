@@ -4,8 +4,8 @@ import os
 import sys
 from collections import Counter
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from PyQt5 import QtCore, QtWidgets
 from scipy.stats import linregress
@@ -19,7 +19,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 plt.rcParams["font.sans-serif"] = ["SimHei"] #用来正常显示中文标签
 plt.rcParams["axes.unicode_minus"] = False #用来正常显示负号
 
-from MathLib.stats_score import *
+from mathlib.stats_score import *
 
 class CoordinateAxis(FigureCanvas):
     '''

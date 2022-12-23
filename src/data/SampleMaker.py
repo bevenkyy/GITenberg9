@@ -3,13 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import random
 import numpy as np
 from sklearn.model_selection import train_test_split
-from fileIO import ExcelIO
+from fileio import ExcelIO
 
 
 

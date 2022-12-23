@@ -3,14 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from config import Conf
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox, QTableWidgetItem
 
 from MainWindowDesigner import Ui_MainWindow
-from InitResource import get_icon, get_pixmap, get_gif
+from utils.icons import get_icon, get_pixmap, get_gif
 from AppSettingDialog import AppSettingDialog
 from SampleMakerDialog import SampleMakerDialog
 from DataScalerDialog import DataScalerDialog
@@ -41,9 +40,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.connect_signal_slot()
     
     def init_app_config(self):
-        #
-        self.setting_filename = os.path.dirname(os.path.dirname(__file__)) + \
-                                                r"\resource\data\setting.ini"
+        self.setting_filename = os.path.join(Conf.PROJ_DIR, "configs/setting.ini")
         self.qSetting = QtCore.QSettings(self.setting_filename, QtCore.QSettings.IniFormat)
         #
         self.working_dir = str(self.qSetting.value("lastFileDir"))
@@ -54,8 +51,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #
         self.sklearn_params_filepath = str(self.qSetting.value("sklearnParamsFilepath"))
         if self.sklearn_params_filepath is None or not os.path.isdir(self.sklearn_params_filepath):
-            self.sklearn_params_filepath = os.path.dirname(os.path.dirname(__file__)) + \
-                                                           r"\resource\data\sklearn_params.json"
+            self.sklearn_params_filepath = os.path.join(Conf.PROJ_DIR, "configs/sklearn_params.json")
             self.qSetting.setValue("sklearnParamsFilepath", self.sklearn_params_filepath)
         #
         self.curl_bin_dir = str(self.qSetting.value("curlBinDir"))

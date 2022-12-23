@@ -3,16 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
-from InitResource import get_icon
+from utils.icons import get_icon
 import numpy as np
 
 from ImageFusionSTARFMDialogDesigner import Ui_ImageFusionSTARFMDialog
-from fileIO import RasterImgIO
+from fileio import RasterImgIO
 from raster import ImageFusion
 
 class ImageFusionSTARFMDialog(QDialog, Ui_ImageFusionSTARFMDialog):

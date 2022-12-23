@@ -4,16 +4,13 @@ import os
 import sys
 from multiprocessing import Process, Manager
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 import multiprocessing
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 
-from InitResource import get_icon, get_pixmap, get_gif
-from fileIO import ExcelIO, ModelIO
+from utils.icons import get_icon, get_pixmap, get_gif
+from fileio import ExcelIO, ModelIO
 from ScikitLearnMLDialogDesigner import Ui_ScikitLearnMLDialog
 from model.ScikitLearnML import ScikitLearnML
 from chart.StatsChart import CoordinateAxis, BarChart, HistgramChart
@@ -444,7 +441,6 @@ class ScikitLearnMLDialog(QDialog, Ui_ScikitLearnMLDialog):
             fit_gif.start()
             self.stepTipLabel.setText("正在训练模型,请稍后！")
             #
-            print(self.estimator)
             self.fit_thread = RunFitEstimatorThread(self.training_cv_samples, self.test_samples,
                                                     self.task_type, self.estimator, 
                                                     self.params_type, self.basic_params, self.training_params)

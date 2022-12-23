@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from InitResource import get_icon
+from utils.icons import get_icon
 
 class Ui_FeatureSelectorDialog(object):
     def setupUi(self, FeatureSelectorDialog):

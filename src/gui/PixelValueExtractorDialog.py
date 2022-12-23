@@ -3,17 +3,14 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMessageBox, QTableWidgetItem
 
 import logging
 import numpy as np
-from InitResource import get_icon
+from utils.icons import get_icon
 from PixelValueExtractorDialogDesigner import Ui_PixelValueExtractorDialog
-from fileIO import ExcelIO, RasterImgIO
+from fileio import ExcelIO, RasterImgIO
 from raster import PixelValueExtractor 
 
 class PixelValueExtractorialog(QDialog, Ui_PixelValueExtractorDialog):

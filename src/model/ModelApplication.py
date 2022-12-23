@@ -3,12 +3,12 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from fileIO import RasterImgIO
+from fileio import RasterImgIO
 from data import FeatureProcessor, DataPreprocessor
-from util import convert_data_structure
+from utils import convert_data_structure
 
 def apply_model_by_img(trained_model, in_file_path, out_file_path, sample_feature, unify_features = False):
     img_info = RasterImgIO.query_geotiff_info(in_file_path)
